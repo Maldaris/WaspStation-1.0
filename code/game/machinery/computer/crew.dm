@@ -83,7 +83,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "crew", "crew monitor", 800, 600 , master_ui, state)
+		ui = new(user, src, ui_key, "CrewConsole", "crew monitor", 800, 600 , master_ui, state)
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
@@ -146,14 +146,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if (I)
 					name = I.registered_name
 					assignment = I.assignment
-					ijob = jobs[I.assignment]
+					ijob = jobs[I.GetJobName()] //Why didn't it do this already - Wasp Edit - Alt Titles
 				else
 					name = "Unknown"
 					assignment = ""
 					ijob = 80
 
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
-					life_status = (!H.stat ? TRUE : FALSE)
+					life_status = ((H.stat < DEAD) ? TRUE : FALSE) //So anything less that dead is marked as alive. (Soft crit, concious, unconcious)
 				else
 					life_status = null
 

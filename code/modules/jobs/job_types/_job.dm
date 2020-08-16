@@ -110,7 +110,10 @@
 				if(!permitted)
 					to_chat(M, "<span class='warning'>Your current species or role does not permit you to spawn with [gear]!</span>")
 					continue
-
+				// WaspStation Edit - Fix Loadout Uniforms not spawning ID/PDA
+				if(G.slot == ITEM_SLOT_ICLOTHING)
+					continue // Handled in pre_equip
+				//End WaspStation Edit - Fix Loadout Uniforms not spawning ID/PDA
 				if(G.slot)
 					if(!H.equip_to_slot_or_del(G.spawn_item(H), G.slot))
 						gear_leftovers += G
@@ -184,10 +187,9 @@
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 
 	if(outfit && preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[title])
-		var/outfitholder = "[outfit]/[lowertext(preference_source.prefs.alt_titles_preferences[title])]"
+		var/outfitholder = "[outfit]/[replacetext(lowertext(preference_source.prefs.alt_titles_preferences[title]), " ", "")]"
 		if(text2path(outfitholder) || !outfitholder)
-			outfit_override = text2path(outfitholder)
-
+			outfit = text2path(outfitholder)
 	if(outfit_override || outfit)
 		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly, preference_source)
 
@@ -268,7 +270,7 @@
 
 	var/pda_slot = ITEM_SLOT_BELT
 
-/datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source = null)
 	switch(H.backpack)
 		if(GBACKPACK)
 			back = /obj/item/storage/backpack //Grey backpack
@@ -297,8 +299,21 @@
 			holder = "[alt_uniform]"
 		if(PREF_GREYSUIT)
 			holder = "/obj/item/clothing/under/color/grey"
+		// WaspStation Edit - Fix Loadout Uniforms not spawning ID/PDA
 		if(PREF_LOADOUT)
-			uniform = null
+			if (preference_source == null)
+				holder = "[uniform]" // Who are we getting the loadout pref from anyways?
+			else
+				var/datum/pref_loadout_uniform = null
+				for(var/gear in preference_source.prefs.equipped_gear)
+					var/datum/gear/G = GLOB.gear_datums[gear]
+					if (G.slot == ITEM_SLOT_ICLOTHING)
+						pref_loadout_uniform = G.path
+				if (pref_loadout_uniform == null)
+					holder = "[uniform]"
+				else
+					uniform = pref_loadout_uniform
+		// End WaspStation Edit - Fix Loadout Uniforms not spawning ID/PDA
 		else
 			holder = "[uniform]"
 
@@ -345,6 +360,8 @@
 		else
 			C.assignment = J.title
 		//Wasp end
+		if(H.age)
+			C.registered_age = H.age
 		C.update_label()
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A
