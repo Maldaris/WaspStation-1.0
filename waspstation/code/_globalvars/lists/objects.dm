@@ -1,0 +1,1 @@
+GLOBAL_LIST_EMPTY(bt_mechas_list)
