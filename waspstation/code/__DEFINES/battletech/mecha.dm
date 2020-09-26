@@ -1,9 +1,0 @@
-#define BT_MECHA_UNPOWERED (1<<0)
-#define BT_MECHA_SHUTDOWN (1<<1)
-#define BT_MECHA_EMP (1<<2)
-#define BT_MECHA_POWERPLANT_HACKED (1<<3)
-
-#define BT_MECH_LIGHT 1
-#define BT_MECH_MEDIUM 2
-#define BT_MECH_HEAVY 3
-#define BT_MECH_ASSAULT 4

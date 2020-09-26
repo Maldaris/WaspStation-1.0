@@ -1,5 +1,3 @@
-
-
 /obj/battletech/mecha
 	name = "mecha"
 	desc = "Battletech Mecha"
@@ -16,6 +14,8 @@
 
 	// Defines powerplants and base stat ceilings
 	var/mecha_class = BT_MECH_LIGHT
+	var/cur_tonnage = 0
+	var/max_tonnage = 0
 
 	//if the mecha starts on a ruin, don't automatically give it a tracking beacon to prevent metagaming.
 	var/ruin_mecha = FALSE
@@ -25,33 +25,39 @@
 	// Powerplant of the mech defining movement tickrate
 	// Powergrid output, and other statistics
 	var/obj/battletech/engine/powerplant = null
+
 	//Scalar multiplier on powerplant.max_velocity used to compute actual movement tickrate
 	var/throttle = 0
+	var/throttle_dirty = FALSE
 
 	// Scalar clamped angle between -90 and 90
 	// used to compute hit detection and true view cone angle
 	var/torso_twist_angle = 0
 	// Rate per second of torso twist rotation
-	var/torso_twist_traverse_rate = 15
+	var/torso_twist_traverse_rate
+	var/torso_twist_desired_angle = 0
 	var/field_of_view = list(-90, 90)
 
 	var/movement_dir = 2
 	//listof /obj/battletech/chassis
 	var/list/mech_chassis = list(
-		"head" = null, "c_torso" = null, "l_torso" = null, "r_torso" = null,
-		"l_leg" = null, "r_leg" = null, "l_arm" = null, "r_arm" = null
+		BT_CHASSIS_HEAD = null,
+		BT_CHASSIS_CTORSO = null,
+		BT_CHASSIS_LTORSO = null,
+		BT_CHASSIS_RTORSO = null,
+		BT_CHASSIS_LLEG = null,
+		BT_CHASSIS_RLEG = null,
+		BT_CHASSIS_LARM = null,
+		BT_CHASSIS_RARM = null
 	)
 
 	var/datum/battletech/control_scheme/control_config
-	var/list/selected_equipment
-
 	// Bitflags: BT_MECHA_UNPOWERED, BT_MECHA_EMP, BT_MECHA_SHUTDOWN, BT_MECHA_POWERPLANT_HACKED
 	var/shutdown_state = 0
 
-	var/maintenance_state = MECHA_LOCKED
+	var/last_error_message = 0
 
-	// Bitchin' Betty, status narrator
-	var/datum/battletech/betty/bitchin_betty
+	var/maintenance_state = MECHA_LOCKED
 
 	var/melee_cooldown_duration = 10
 	var/melee_on_cooldown = FALSE
@@ -299,6 +305,9 @@
 		return
 	if(user.incapacitated())
 		return
+	if(maintenance_state)
+		occupant_message("<span class='warning'>Maintenance protocols in effect.</span>")
+		return
 	if(src == target)
 		return
 	var/dir_to_target = get_dir(src,target)
@@ -390,32 +399,20 @@
 	if(torso_twist_sound)
 		playsound(src, torso_twist_sound, 40, 1)
 
-/obj/battletech/mecha/Move(atom/newloc, direct)
-	. = ..()
-	if(.)
-		events.fireEvent("onMove", get_turf(src))
-	if(internal_tank?.disconnect())
-		occupant_message("<span class='warning'>Air port connection has been severed!</span>")
-		log_message("Lost connection to gas port.", LOG_MECHA)
+/obj/battletech/mecha/onMouseMove(object,location,control,params)
+	if(!pilot || !pilot.client || pilot.incapacitated())
+		return // I don't know what's going on.
+	//TODO inhand check for control joystick
 
-/obj/battletech/mecha/Process_Spacemove(var/space_movement_dir = 0)
-	. = ..()
-	if(.)
-		return TRUE
+	var/list/params_list = params2list(params)
+	var/sl_list = splittext(params_list["screen-loc"],",")
+	var/sl_x_list = splittext(sl_list[1], ":")
+	var/sl_y_list = splittext(sl_list[2], ":")
+	var/view_list = isnum(pilot.client.view) ? list("[pilot.client.view*2+1]","[pilot.client.view*2+1]") : splittext(pilot.client.view, "x")
+	var/dx = text2num(sl_x_list[1]) + (text2num(sl_x_list[2]) / world.icon_size) - 1 - text2num(view_list[1]) / 2
+	var/dy = text2num(sl_y_list[1]) + (text2num(sl_y_list[2]) / world.icon_size) - 1 - text2num(view_list[2]) / 2
+	if(sqrt(dx*dx+dy*dy) > 1)
+		torso_twist_desired_angle = 90 - ATAN2(dx, dy)
+	else
+		torso_twist_desired_desired_angle = null
 
-	var/atom/movable/backup = get_spacemove_backup()
-	if(backup)
-		if(istype(backup) && movement_dir && !backup.anchored)
-			if(backup.newtonian_move(turn(space_movement_dir, 180)))
-				step_silent = TRUE
-				if(occupant)
-					to_chat(occupant, "<span class='info'>You push off [backup] to propel yourself.</span>")
-		return TRUE
-
-	if(can_move <= world.time && active_thrusters && space_movement_dir && active_thrusters.thrust(space_movement_dir))
-		step_silent = TRUE
-		return TRUE
-
-	return FALSE
-
-/obj/battletech/mecha/relaymove(mob/user, direction)
