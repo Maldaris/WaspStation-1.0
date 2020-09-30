@@ -23,9 +23,19 @@
 		BT_MECH_HEAVY = 70
 		BT_MECH_ASSAULT = 95
 	)
+	// KPH
+	mech_class_max_velocity_modifier = list(
+
+	)
 	// Determined by the manipulator in each leg
 	// tonnage scaling is averaged out.
 	myomer_level_scaling = list(0.8, 1, 1.1, 1.25)
+
+/datum/battletech/calculate_movement_speed(btmech)
+	var/obj/battletech/mecha = btmech
+	if(!mecha || isbtmech(mecha))
+		return null
+
 
 /**
 	Calculates the rate at which a mech should be able to turn
@@ -89,10 +99,8 @@
 
 	return rating_modifier * mech_class_base_tonnage[mecha.mecha_class]
 
-
 /datum/battletech/betty
-	sound_map = list(
-
-	)
+	sound_map = list()
 /datum/battletech/betty/play_sound(target)
 	if(!target || !isplayer(target))
+		return

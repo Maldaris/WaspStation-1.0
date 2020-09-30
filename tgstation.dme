@@ -3156,6 +3156,7 @@
 #include "waspstation\code\game\machinery\porta_turret\portable_turret.dm"
 #include "waspstation\code\game\mecha\battletech\battletech_chassis.dm"
 #include "waspstation\code\game\mecha\battletech\battletech_equipment.dm"
+#include "waspstation\code\game\mecha\battletech\chassis\battletech_chassis_engine.dm"
 #include "waspstation\code\game\objects\effects\countdown.dm"
 #include "waspstation\code\game\objects\effects\landmarks.dm"
 #include "waspstation\code\game\objects\effects\spiderperson_web.dm"
