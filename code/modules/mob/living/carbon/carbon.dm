@@ -420,19 +420,20 @@
 			var/turf/target = get_turf(loc)
 			I.safe_throw_at(target,I.throw_range,I.throw_speed,src, force = move_force)
 
-/mob/living/carbon/Stat()
-	..()
-	if(statpanel("Status"))
-		var/obj/item/organ/alien/plasmavessel/vessel = getorgan(/obj/item/organ/alien/plasmavessel)
-		if(vessel)
-			stat(null, "Plasma Stored: [vessel.storedPlasma]/[vessel.max_plasma]")
-		var/obj/item/organ/dwarfgland/dwarfgland = getorgan(/obj/item/organ/dwarfgland)		// Begin Wasp Edit - Dwarf Alcohol Gland
-		if(dwarfgland)
-			stat(null, "Alcohol Stored: [dwarfgland.stored_alcohol]/[dwarfgland.max_alcohol]")		// End Wasp Edit
-		if(locate(/obj/item/assembly/health) in src)
-			stat(null, "Health: [health]")
+/mob/living/carbon/get_status_tab_items()
+	. = ..()
+	var/obj/item/organ/alien/plasmavessel/vessel = getorgan(/obj/item/organ/alien/plasmavessel)
+	if(vessel)
+		. += "Plasma Stored: [vessel.storedPlasma]/[vessel.max_plasma]"
+	var/obj/item/organ/dwarfgland/dwarfgland = getorgan(/obj/item/organ/dwarfgland)		// Begin Wasp Edit - Dwarf Alcohol Gland
+	if(dwarfgland)
+		. += "Alcohol Stored: [dwarfgland.stored_alcohol]/[dwarfgland.max_alcohol]"		// End Wasp Edit
+	if(locate(/obj/item/assembly/health) in src)
+		. += "Health: [health]"
 
-	add_abilities_to_panel()
+/mob/living/carbon/get_proc_holders()
+	. = ..()
+	. += add_abilities_to_panel()
 
 /mob/living/carbon/attack_ui(slot)
 	if(!has_hand_for_held_index(active_hand_index))
@@ -1093,3 +1094,23 @@
 	if(!dna)
 		return
 	dna.features["flavor_text"] = new_text
+
+/// Returns whether or not the carbon should be able to be shocked
+/mob/living/carbon/proc/should_electrocute(power_source)
+	if (ismecha(loc))
+		return FALSE
+
+	if (wearing_shock_proof_gloves())
+		return FALSE
+
+	if(!get_powernet_info_from_source(power_source))
+		return FALSE
+
+	if (HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
+		return FALSE
+
+	return TRUE
+
+/// Returns if the carbon is wearing shock proof gloves
+/mob/living/carbon/proc/wearing_shock_proof_gloves()
+	return gloves?.siemens_coefficient == 0

@@ -15887,7 +15887,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
 "aWX" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /obj/machinery/airalarm{
@@ -69363,7 +69363,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
@@ -94124,6 +94124,10 @@
 	},
 /turf/open/floor/wood,
 /area/vacant_room/office)
+"kBh" = (
+/mob/living/simple_animal/hostile/retaliate/poison/snake/bookworm,
+/turf/open/floor/carpet,
+/area/library)
 "kBw" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -102137,7 +102141,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/mob/living/simple_animal/sloth/citrus,
+/mob/living/simple_animal/hostile/retaliate/gator/steppy,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -166746,7 +166750,7 @@ cju
 ckR
 cmv
 cnU
-cpy
+kBh
 cqT
 cpy
 ctN
