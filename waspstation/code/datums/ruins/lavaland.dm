@@ -1,7 +1,14 @@
 /datum/map_template/ruin/lavaland/ore_node
 	cost = 5
 	always_place = TRUE // We want to ensure that there is always ore available
-	var/material_type = null // This should be a material datum that contains a sheet_type property that isn't null.
+	allow_duplicates = TRUE
+
+/datum/map_template/ruin/lavaland/ore_node/uranium
+	name = "Uranium Node"
+	id = "uranium-node"
+	description = "A vein of dense uranium ore, suitable for setting up a deep core mining operation."
+	suffix = "lavaland_ore_node_uranium.dmm"
+	cost = 0 // We should have a few of these.
 
 /datum/map_template/ruin/lavaland/ore_node/titanium
 	name = "Titanium Node"

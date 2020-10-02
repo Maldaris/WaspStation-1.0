@@ -61,3 +61,15 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/micro_laser = 3,
 		/obj/item/stock_parts/matter_bin = 1)
+
+/obj/item/circuitboard/machine/deep_core_miner
+	name = "Deep Core Miner (Machine Board)"
+	build_path = /obj/machinery/mineral/dcm_drill
+	req_components = list(
+		/obj/stock_parts/matter_bin = 5,
+		/obj/stock_parts/manipulator = 5,
+		/obj/stock_parts/micro_laser = 10,
+		/obj/stock_parts/scanning_module = 3,
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_arts/capacitor = 3
+	)
