@@ -1,1 +1,0 @@
-/obj/battletech/mecha/engine

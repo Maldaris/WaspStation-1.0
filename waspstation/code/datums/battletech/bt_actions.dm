@@ -1,0 +1,10 @@
+/datum/action/innate/battletech
+/datum/action/innate/battletech/mecha
+/datum/action/innate/battletech/mecha/mech_eject
+/datum/action/innate/battletech/mecha/mech_toggle_internals
+/datum/action/innate/battletech/mecha/mech_fire_mode_toggle
+/datum/action/innate/battletech/mecha/mech_weapon_type_cycle
+/datum/action/innate/battletech/mecha/mech_open_configuration
+/datum/action/innate/battletech/mecha/mech_overheat_shutdown
+/datum/action/innate/battletech/mecha/mech_override_overheat_shutdown
+/datum/action/innate/battletech/mecha/mech_toggle_jump_jets

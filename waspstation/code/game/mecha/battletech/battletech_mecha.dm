@@ -30,6 +30,7 @@
 	var/throttle = 0
 	var/throttle_increment_amount = 10
 	var/throttle_dirty = FALSE
+	var/sprinting = FALSE
 
 	var/movement_tickrate = INFINITY
 	var/movement_last_tick = 0
@@ -45,8 +46,7 @@
 	var/field_of_view = list(-90, 90)
 
 	var/movement_dir = 2
-	//listof /obj/battletech/chassis
-	var/list/mech_chassis = list(
+	var/list/obj/battletech/chassis/mech_chassis = list(
 		BT_CHASSIS_HEAD = null,
 		BT_CHASSIS_CTORSO = null,
 		BT_CHASSIS_LTORSO = null,
@@ -66,10 +66,12 @@
 	var/maintenance_state = MECHA_LOCKED
 
 	var/melee_cooldown_duration = 10
-	var/melee_last_hit = 0
+	var/melee_on_cooldown = FALSE
+	var/bumpsmash = FALSE
 
 	var/list/proc_res = list()
 	var/datum/effect_system/spark_spread/spark_system = new
+	var/datum/effect_system/smoke_spread/smoke_system = new
 
 	var/lights = FALSE
 	var/lights_power = 6
@@ -89,18 +91,21 @@
 
 	var/wreckage
 
+	var/datum/events/events //Wasp - Readded for Smartwire Revert
+
 	//Used for disabling mech step sounds while using thrusters or pushing off lockers
 	var/step_silent = FALSE
 	var/stepsound = 'sound/mecha/mechstep.ogg'
 	var/slowstep = 'sound/mecha/mechstep.ogg'
 	var/turnsound = 'sound/mecha/mechturn.ogg'
-	var/torso_twist_sound = 'sound/mecha/mechturn.ogg'
+	var/torso_twist_sound = 'waspstation/sound/mecha/mechtwist.ogg'
+	var/sprint_transition_up = 'waspstation/sound/mecha/sprint_transition_up.ogg'
+	var/sprint_transition_down = 'waspstation/sound/mecha/sprint_transition_down.ogg'
 
 	var/enter_delay = 40
 	var/exit_delay = 20
 	var/destruction_sleep_duration = 20
 	var/enclosed = TRUE // Rarely will this ever not be true
-	var/silicon_icon_state = null
 	var/is_currently_ejecting = FALSE
 
 	var/datum/action/innate/battletech/mecha/mech_eject/eject_action = new
@@ -134,11 +139,11 @@
 	log_message("[src.name] created.", LOG_MECHA)
 	GLOB.bt_mechas_list += src
 	prepare_huds()
-	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
-	diag_hud_set_mechhealth()
-	diag_hud_set_mechcell()
-	diag_hud_set_mechstat()
+	// for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
+	// 	diag_hud.add_to_hud(src)
+	// diag_hud_set_mechhealth()
+	// diag_hud_set_mechcell()
+	// diag_hud_set_mechstat()
 
 /obj/battletech/mecha/Destroy()
 	if(pilot)
@@ -173,8 +178,7 @@
 	return ..()
 
 /obj/battletech/mecha/update_icon_state()
-	if(silicon_pilot && silicon_icon_state)
-		icon_state = silicon_icon_state
+	return
 
 /obj/battletech/mecha/proc/add_radio()
 	radio = new(src)
@@ -196,7 +200,7 @@
 	return internal_tank
 
 /obj/battletech/mecha/CheckParts(list/parts_list)
-	return powerplant.CheckParts()
+	powerplant.CheckParts()
 
 /obj/battletech/mecha/proc/can_use(mob/user)
 	if(user != pilot)
@@ -206,9 +210,9 @@
 			return 1
 	return 0
 
-/obj/mecha/examine(mob/user)
+/obj/battletech/mecha/examine(mob/user)
 
-/obj/mecha/process()
+/obj/battletech/mecha/process()
 	if(cabin_air && cabin_air.return_volume() > 0)
 		var/delta = cabin_air.return_temperature() - T20C
 		cabin_air.set_temperature(cabin_air.return_temperature() - max(-10, min(10, round(delta/4,0.1))))
@@ -244,14 +248,14 @@
 
 		var/list/chassis_damage = list();
 		for(var/c in mech_chassis)
-			var/battletech/chassis/part = c
+			var/obj/battletech/chassis/part = c
 			if(part)
-				if(part.state == BT_CHASSIS_DESTROYED)
-					chassis_damage[part.type] = BT_CHASSIS_DESTROYED
-				else if(part.state == BT_CHASSIS_PRISTINE)
-					chassis_damage[part.type] = BT_CHASSIS_PRISTINE
+				if(part.damage == BT_CHASSIS_DESTROYED)
+					chassis_damage[part.slot] = BT_CHASSIS_DESTROYED
+				else if(part.damage == BT_CHASSIS_PRISTINE)
+					chassis_damage[part.slot] = BT_CHASSIS_PRISTINE
 				else
-					chassis_damage[part.type] = BT_CHASSIS_DAMAGED
+					chassis_damage[part.slot] = BT_CHASSIS_DAMAGED
 		update_chassis_alert(chassis_damage)
 
 		var/atom/checking = pilot.loc
@@ -276,15 +280,15 @@
 		visible_message("<span class='warning'>[pilot] tumbles out of the cockpit!</span>")
 		go_out() //Maybe we should install seat belts?
 
-	diag_hud_set_mechhealth()
-	diag_hud_set_mechcell()
-	diag_hud_set_mechstat()
+	// diag_hud_set_mechhealth()
+	// diag_hud_set_mechcell()
+	// diag_hud_set_mechstat()
 
 	process_movement()
 
 /obj/battletech/mecha/fire_act()
 	. = ..()
-	if (pilot && !enclosed && !silicon_pilot)
+	if (pilot && !enclosed)
 		if (pilot.fire_stacks < 5)
 			pilot.fire_stacks++
 		pilot.IgniteMob()
@@ -303,3 +307,11 @@
 			if(M.client)
 				speech_bubble_recipients.Add(M.client)
 		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, image('icons/mob/talk.dmi', src, "machine[say_test(raw_message)]",MOB_LAYER+1), speech_bubble_recipients, 30)
+
+/obj/battletech/mecha/proc/occupant_message(message as text)
+	if(message)
+		if(pilot && pilot.client)
+			to_chat(pilot, "[icon2html(src, pilot)] [message]")
+
+/obj/battletech/mecha/proc/go_out()
+	return
