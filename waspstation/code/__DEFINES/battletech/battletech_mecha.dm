@@ -21,7 +21,6 @@
 #define BT_CHASSIS_DAMAGED 0
 #define BT_CHASSIS_PRISTINE 1
 
-
 #define BT_RUN_THRESHOLD 50
 
 #define BT_EQUIPMENT_BASE "equip_type_base"

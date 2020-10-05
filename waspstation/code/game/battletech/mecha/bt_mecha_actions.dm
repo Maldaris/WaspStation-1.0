@@ -6,7 +6,7 @@
 	fire_mode_toggle.Grant(user, src)
 	weapon_type_cycle.Grant(user, src)
 	open_configuration.Grant(user, src)
-	overheat_shutdown.Grant(user, src)
+	shutdown_action.Grant(user, src)
 	overheat_shutdown_override.Grant(user, src)
 	toggle_jump_jets.Grant(user, src)
 
@@ -17,6 +17,6 @@
 	fire_mode_toggle.Remove(user, src)
 	weapon_type_cycle.Remove(user, src)
 	open_configuration.Remove(user, src)
-	overheat_shutdown.Remove(user, src)
+	shutdown_action.Remove(user, src)
 	overheat_shutdown_override.Remove(user, src)
 	toggle_jump_jets.Remove(user, src)

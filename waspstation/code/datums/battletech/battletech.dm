@@ -39,13 +39,13 @@
 
 /**
 	kph -> m/s = x / 3.6
-	1 tile = ~2 meters
-	kph -> t/s = f(x) = x / (2 * 3.6) = x / 7.2 = 0.138... * x
-	t/s -> t/ds = f(x) / 10 = 0.0138... * x
-	therefore kph2tpds = 0.0138... * x
+	1 tile = ~2 meters, for sake of balance, we're making this 5:1 ratio
+	kph -> t/s = f(x) = x / (10 * 3.6) = x / 30 = 0.027777... * x
+	t/s -> t/ds = f(x) / 10 = 0.0027777... * x
+	therefore kph2tpds = 0.0027777... * x
 **/
 /datum/battletech/proc/kph2tpds(kph)
-	return 0.0138888 * kph
+	return 0.0027777 * kph
 
 /datum/battletech/proc/calculate_movement_speed(btmech)
 	var/obj/battletech/mecha/mecha = btmech
@@ -133,9 +133,3 @@
 	var/rating_modifier = (component_rating_l + component_rating_r) / 2
 
 	return rating_modifier * mech_class_base_tonnage[mecha.mecha_class]
-
-/datum/battletech/betty
-	var/sound_map = list()
-// /datum/battletech/betty/proc/play_sound(target)
-// 	if(!target || !isplayer(target))
-// 		return

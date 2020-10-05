@@ -55,7 +55,6 @@
 				control_config.cycle_to_next()
 			return
 	else
-		var/obj/battletech/chassis/head/mech_head = mech_chassis[BT_CHASSIS_HEAD]
 		if(mech_head.internal_damage & MECHA_INT_CONTROL_LOST)
 			var/list/possible_targets = oview(1, src)
 			if(!length(possible_targets))

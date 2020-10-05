@@ -113,7 +113,7 @@
 	var/datum/action/innate/battletech/mecha/mech_fire_mode_toggle/fire_mode_toggle = new
 	var/datum/action/innate/battletech/mecha/mech_weapon_type_cycle/weapon_type_cycle = new
 	var/datum/action/innate/battletech/mecha/mech_open_configuration/open_configuration = new
-	var/datum/action/innate/battletech/mecha/mech_overheat_shutdown/overheat_shutdown = new
+	var/datum/action/innate/battletech/mecha/mech_shutdown/shutdown_action = new
 	var/datum/action/innate/battletech/mecha/mech_override_overheat_shutdown/overheat_shutdown_override = new
 	var/datum/action/innate/battletech/mecha/mech_toggle_jump_jets/toggle_jump_jets = new
 
@@ -149,20 +149,11 @@
 	if(pilot)
 		pilot.SetSleeping(destruction_sleep_duration)
 	go_out()
-	var/mob/living/silicon/ai/AI
-	for(var/mob/M in src)
-		if(isAI(M))
-			pilot = null
-			AI = M
-		else
-			M.forceMove(loc)
 	for(var/obj/battletech/chassis/section in mech_chassis)
 		section.detach_equipment(loc)
 		qdel(section)
 	if(powerplant)
 		qdel(powerplant)
-	if(AI)
-		AI.gib()
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	if(loc)
@@ -187,94 +178,13 @@
 	radio.icon_state = icon_state
 	radio.subspace_transmission = TRUE
 
-/obj/battletech/mecha/proc/add_cabin()
-	cabin_air = new
-	cabin_air.set_temperature(T20C)
-	cabin_air.set_volume(200)
-	cabin_air.set_moles(/datum/gas/oxygen, O2STANDARD*cabin_air.return_volume()/(R_IDEAL_GAS_EQUATION*cabin_air.return_temperature()))
-	cabin_air.set_moles(/datum/gas/nitrogen, N2STANDARD*cabin_air.return_volume()/(R_IDEAL_GAS_EQUATION*cabin_air.return_temperature()))
-	return cabin_air
-
-/obj/battletech/mecha/proc/add_airtank()
-	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
-	return internal_tank
-
-/obj/battletech/mecha/CheckParts(list/parts_list)
-	powerplant.CheckParts()
-
-/obj/battletech/mecha/proc/can_use(mob/user)
-	if(user != pilot)
-		return 0
-	if(user && ismob(user))
-		if(!user.incapacitated())
-			return 1
-	return 0
-
 /obj/battletech/mecha/examine(mob/user)
 
 /obj/battletech/mecha/process()
-	if(cabin_air && cabin_air.return_volume() > 0)
-		var/delta = cabin_air.return_temperature() - T20C
-		cabin_air.set_temperature(cabin_air.return_temperature() - max(-10, min(10, round(delta/4,0.1))))
-
-	if(internal_tank)
-		var/datum/gas_mixture/tank_air = internal_tank.return_air()
-
-		var/release_pressure = internal_tank_valve
-		var/cabin_pressure = cabin_air.return_pressure()
-		var/pressure_delta = min(release_pressure - cabin_pressure, (tank_air.return_pressure() - cabin_pressure)/2)
-		var/transfer_moles = 0
-		if(pressure_delta > 0) //cabin pressure lower than release pressure
-			if(tank_air.return_temperature() > 0)
-				transfer_moles = pressure_delta*cabin_air.return_volume()/(cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-				var/datum/gas_mixture/removed = tank_air.remove(transfer_moles)
-				cabin_air.merge(removed)
-		else if(pressure_delta < 0) //cabin pressure higher than release pressure
-			var/datum/gas_mixture/t_air = return_air()
-			pressure_delta = cabin_pressure - release_pressure
-			if(t_air)
-				pressure_delta = min(cabin_pressure - t_air.return_pressure(), pressure_delta)
-			if(pressure_delta > 0) //if location pressure is lower than cabin pressure
-				transfer_moles = pressure_delta*cabin_air.return_volume()/(cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-				var/datum/gas_mixture/removed = cabin_air.remove(transfer_moles)
-				if(t_air)
-					t_air.merge(removed)
-				else //just delete the cabin gas, we're in space or some shit
-					qdel(removed)
+	process_atmospherics()
 
 	if(pilot)
-		update_throttle_alerts()
-		powerplant.update_powerplant_alerts()
-
-		var/list/chassis_damage = list();
-		for(var/c in mech_chassis)
-			var/obj/battletech/chassis/part = c
-			if(part)
-				if(part.damage == BT_CHASSIS_DESTROYED)
-					chassis_damage[part.slot] = BT_CHASSIS_DESTROYED
-				else if(part.damage == BT_CHASSIS_PRISTINE)
-					chassis_damage[part.slot] = BT_CHASSIS_PRISTINE
-				else
-					chassis_damage[part.slot] = BT_CHASSIS_DAMAGED
-		update_chassis_alert(chassis_damage)
-
-		var/atom/checking = pilot.loc
-		// recursive check to handle all cases regarding very nested pilots,
-		// such as brainmob inside brainitem inside MMI inside mecha
-		while (!isnull(checking))
-			if (isturf(checking))
-				// hit a turf before hitting the mecha, seems like they have
-				// been moved out
-				pilot.clear_alert("throttle")
-				pilot.clear_alert("powerplant alerts")
-				pilot.clear_alert("chassis doll")
-				RemoveActions(pilot, human_pilot=1)
-				pilot = null
-				break
-			else if (checking == src)
-				break  // all good
-			checking = checking.loc
-
+		process_pilot_ui()
 
 	if(!enclosed && pilot?.incapacitated())
 		visible_message("<span class='warning'>[pilot] tumbles out of the cockpit!</span>")
@@ -314,4 +224,42 @@
 			to_chat(pilot, "[icon2html(src, pilot)] [message]")
 
 /obj/battletech/mecha/proc/go_out()
-	return
+	if(!pilot)
+		return
+	var/atom/moveable/mob_container
+	if(ishuman(pilot))
+		clear_pilot_ui()
+		mob_container = pilot
+	else
+		return
+	var/mob/living/L = pilot
+	pilot = null
+	if(mob_container.forceMove(newloc))
+		log_message("[mob_container] moved out.", LOG_MECHA)
+		// L << browse(null, "window=exosuit") XXX: Do we need this?
+		icon_state = initial(icon_state)
+		setDir(initial(movement_dir))
+	if(L && L.client)
+		L.client.change_view(CONFIG_GET(string/default_view))
+		zoom_mode = 0
+
+/obj/battletech/mecha/CheckParts(list/parts_list)
+	powerplant.CheckParts(parts_list)
+
+/obj/battletech/mecha/proc/can_use(mob/user)
+	if(user != pilot)
+		return 0
+	if(user && ismob(user))
+		if(!user.incapacitated())
+			return 1
+	return 0
+
+/obj/battletech/mecha/container_resist(mob/living/user)
+	is_currently_ejecting = TRUE
+	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.</span>")
+	if(do_after(occupant, has_gravity() ? exit_delay : 0 , target = src))
+		to_chat(occupant, "<span class='notice'>You exit the mech.</span>")
+		go_out()
+	else
+		to_chat(occupant, "<span class='notice'>You stop exiting the mech. Weapons are enabled again.</span>")
+	is_currently_ejecting = FALSE
