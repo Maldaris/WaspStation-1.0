@@ -175,27 +175,56 @@
 		var/mob/M = obstacle
 		if(M.move_resist <= move_force)
 			step(obstacle, movement_dir)
+
+/obj/battletech/mecha/onMouseMove(object,location,control,params)
+	if(!pilot || !pilot.client || pilot.incapacitated())
+		return // I don't know what's going on.
+	//TODO inhand check for control joystick
+
+	var/list/params_list = params2list(params)
+	var/sl_list = splittext(params_list["screen-loc"],",")
+	var/sl_x_list = splittext(sl_list[1], ":")
+	var/sl_y_list = splittext(sl_list[2], ":")
+	var/view_list = isnum(pilot.client.view) ? list("[pilot.client.view*2+1]","[pilot.client.view*2+1]") : splittext(pilot.client.view, "x")
+	var/dx = text2num(sl_x_list[1]) + (text2num(sl_x_list[2]) / world.icon_size) - 1 - text2num(view_list[1]) / 2
+	var/dy = text2num(sl_y_list[1]) + (text2num(sl_y_list[2]) / world.icon_size) - 1 - text2num(view_list[2]) / 2
+	if(sqrt(dx*dx+dy*dy) > 1)
+		torso_twist_desired_angle = 90 - ATAN2(dx, dy)
+	else
+		torso_twist_desired_angle = null
+
 #define bt_diagonal_move_macro(dir) (dir & (dir - 1))
 /obj/battletech/mecha/proc/process_movement()
 	if(!movement_capable())
 		return
 	if(throttle > 0 && !powerplant.is_shutdown())
-		var/true_throttle = throttle
 		if(powerplant.is_overloaded())
-			true_throttle = min(10, throttle)
+			throttle = min(10, throttle)
 			throttle_dirty = TRUE
 		if(mech_chassis[BT_CHASSIS_LLEG].is_disabled())
-			true_throttle = max(10, true_throttle / 2)
+			throttle = max(10, throttle / 2)
 			throttle_dirty = TRUE
 		if(mech_chassis[BT_CHASSIS_RLEG].is_disabled())
-			true_throttle = max(10, true_throttle / 2)
+			throttle = max(10, throttle / 2)
 			throttle_dirty = TRUE
 		if(throttle_dirty)
 			movement_tickrate = GLOB.battletech.calculate_movement_speed(src)
 			throttle_dirty = FALSE
+
+		if(torso_twist_angle < torso_twist_desired_angle)
+			torso_twist_angle += torso_twist_traverse_rate
+			if(floor(abs(torso_twist_desired_angle - torso_twist_angle)) < torso_twist_traverse_rate)
+				torso_twist_angle = torso_twist_desired_angle
+
+		if(torso_twist_angle > torso_twist_desired_angle)
+			torso_twist_angle -= torso_twist_traverse_rate
+			if(floor(abs(torso_twist_desired_angle - torso_twist_angle)) < torso_twist_traverse_rate)
+				torso_twist_angle = torso_twist_desired_angle
+
 		if(world.time >= (movement_tickrate * bt_diagonal_move_macro(movement_dir) ? 1.41421356237 : 1) + movement_last_tick)
 			step(src, movement_dir)
 			if(!step_silent)
 				src.play_stepsound()
 			movement_last_tick = world.time
+		if(world.time >= ())
 #undef bt_diagonal_move_macro

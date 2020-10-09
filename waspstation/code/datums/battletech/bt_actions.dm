@@ -40,8 +40,31 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/battletech/mecha/mech_fire_mode_toggle
+	name = "Toggle Fire Mode"
+	button_icon_state = "mech_fire_mode_group"
+
+/datum/action/innate/battletech/mecha/mech_fire_mode_toggle/Activate()
+	if(!owner || !mech || mech.pilot != owner)
+		return
+	mech.control_config.group_fire = !mech.control_config.group_fire
+	button_icon_state = "mech_fire_mode_[mech.control_config.group_fire ? "group" : "chain"]"
+	GLOB.bt_bitchin_betty.play_sound(owner, "[mech.control_config.group_fire ? "group" : "chain"]_fire")
+	UpdateButtonIcon()
+
 /datum/action/innate/battletech/mecha/mech_weapon_type_cycle
+	name = "Cycle Next Equipment"
+	button_icon_state = "mech_cycle_next_equipment"
+
+/datum/action/innate/battletech/mecha/mech_weapon_type_cycle/Activate()
+	if(!owner || !mech || mech.pilot != owner)
+		return
+	mech.control_config.cycle_to_next()
+	GLOB.bt_bitchin_betty.play_sound(owner, "button_press")
+
 /datum/action/innate/battletech/mecha/mech_open_configuration
+
+/datum/action/innate/battletech/mecha/mech_open_configuration/Activate()
+
 /datum/action/innate/battletech/mecha/mech_shutdown
 /datum/action/innate/battletech/mecha/mech_override_overheat_shutdown
 /datum/action/innate/battletech/mecha/mech_toggle_jump_jets

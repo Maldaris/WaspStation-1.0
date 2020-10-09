@@ -1,7 +1,7 @@
-/obj/obj/battletech/mecha/process_atmospherics()
+/obj/battletech/mecha/proc/process_atmospherics()
 	if(cabin_air && cabin_air.return_volume() > 0)
-			var/delta = cabin_air.return_temperature() - T20C
-			cabin_air.set_temperature(cabin_air.return_temperature() - max(-10, min(10, round(delta/4,0.1))))
+		var/delta = cabin_air.return_temperature() - T20C
+		cabin_air.set_temperature(cabin_air.return_temperature() - max(-10, min(10, round(delta/4,0.1))))
 
 		if(internal_tank)
 			var/datum/gas_mixture/tank_air = internal_tank.return_air()

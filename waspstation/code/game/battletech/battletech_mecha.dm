@@ -62,12 +62,24 @@
 	var/shutdown_state = 0
 
 	var/last_error_message = 0
+	var/last_slowprocess_tick = 0
 
 	var/maintenance_state = MECHA_LOCKED
 
 	var/melee_cooldown_duration = 10
 	var/melee_on_cooldown = FALSE
 	var/bumpsmash = FALSE
+
+	//Heat System
+	var/current_heat = 0 // Classic Battletech Heat Points
+	var/maximum_heat = 35 // Classic Battletech Heat Points Auto-Shutdown + 5
+	var/heat_diffusion_rate = 0 // cuumulative heat points dissapated per heat tick
+
+	var/jump_jets_available = TRUE
+	var/jump_jets_enabled = FALSE
+	var/jump_jets_collective_strength = 0
+	var/jump_jets_total_fuel = 0
+	var/jump_jets_consumption_rate = 0
 
 	var/list/proc_res = list()
 	var/datum/effect_system/spark_spread/spark_system = new
@@ -98,9 +110,9 @@
 	var/stepsound = 'sound/mecha/mechstep.ogg'
 	var/slowstep = 'sound/mecha/mechstep.ogg'
 	var/turnsound = 'sound/mecha/mechturn.ogg'
-	var/torso_twist_sound = 'waspstation/sound/mecha/mechtwist.ogg'
-	var/sprint_transition_up = 'waspstation/sound/mecha/sprint_transition_up.ogg'
-	var/sprint_transition_down = 'waspstation/sound/mecha/sprint_transition_down.ogg'
+	var/torso_twist_sound = 'waspstation/sound/mecha/torso_twist_loop.wav'
+	var/sprint_transition_up = 'waspstation/sound/mecha/run_transition.wav'
+	var/sprint_transition_down = 'waspstation/sound/mecha/walk_transition.wav'
 
 	var/enter_delay = 40
 	var/exit_delay = 20
@@ -125,7 +137,6 @@
 /obj/battletech/mecha/Initialize()
 	. = ..()
 	events = new
-	icon_state += "-open"
 	add_radio()
 	add_cabin()
 	if (enclosed)
@@ -134,16 +145,19 @@
 	spark_system.attach(src)
 	smoke_system.set_up(3, src)
 	smoke_system.attach(src)
-	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
 	log_message("[src.name] created.", LOG_MECHA)
 	GLOB.bt_mechas_list += src
 	prepare_huds()
-	// for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-	// 	diag_hud.add_to_hud(src)
-	// diag_hud_set_mechhealth()
-	// diag_hud_set_mechcell()
-	// diag_hud_set_mechstat()
+	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
+		diag_hud.add_to_hud(src)
+	diag_hud_set_mechintegrity()
+	diag_hud_set_mechheat()
+	diag_hud_set_mechstat()
+
+/obj/battletech/mecha/proc/startup_sequence()
+
+
 
 /obj/battletech/mecha/Destroy()
 	if(pilot)
@@ -181,20 +195,22 @@
 /obj/battletech/mecha/examine(mob/user)
 
 /obj/battletech/mecha/process()
-	process_atmospherics()
+	process_movement()
 
-	if(pilot)
-		process_pilot_ui()
+	if(last_slowprocess_tick + 10 >= world.time)]
+		last_slowprocess_tick = world.time
+		process_atmospherics()
+
+		if(pilot)
+			process_pilot_ui()
+
+		diag_hud_set_mechintegrity()
+		diag_hud_set_mechheat()
+		diag_hud_set_mechstat()
 
 	if(!enclosed && pilot?.incapacitated())
 		visible_message("<span class='warning'>[pilot] tumbles out of the cockpit!</span>")
 		go_out() //Maybe we should install seat belts?
-
-	// diag_hud_set_mechhealth()
-	// diag_hud_set_mechcell()
-	// diag_hud_set_mechstat()
-
-	process_movement()
 
 /obj/battletech/mecha/fire_act()
 	. = ..()
@@ -223,10 +239,10 @@
 		if(pilot && pilot.client)
 			to_chat(pilot, "[icon2html(src, pilot)] [message]")
 
-/obj/battletech/mecha/proc/go_out()
+/obj/battletech/mecha/proc/go_out(forced, atom/newloc = loc)
 	if(!pilot)
 		return
-	var/atom/moveable/mob_container
+	var/atom/movable/mob_container
 	if(ishuman(pilot))
 		clear_pilot_ui()
 		mob_container = pilot
@@ -241,7 +257,6 @@
 		setDir(initial(movement_dir))
 	if(L && L.client)
 		L.client.change_view(CONFIG_GET(string/default_view))
-		zoom_mode = 0
 
 /obj/battletech/mecha/CheckParts(list/parts_list)
 	powerplant.CheckParts(parts_list)
@@ -256,10 +271,10 @@
 
 /obj/battletech/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
-	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.</span>")
-	if(do_after(occupant, has_gravity() ? exit_delay : 0 , target = src))
-		to_chat(occupant, "<span class='notice'>You exit the mech.</span>")
+	to_chat(pilot, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.</span>")
+	if(do_after(pilot, has_gravity() ? exit_delay : 0 , target = src))
+		to_chat(pilot, "<span class='notice'>You exit the mech.</span>")
 		go_out()
 	else
-		to_chat(occupant, "<span class='notice'>You stop exiting the mech. Weapons are enabled again.</span>")
+		to_chat(pilot, "<span class='notice'>You stop exiting the mech. Weapons are enabled again.</span>")
 	is_currently_ejecting = FALSE

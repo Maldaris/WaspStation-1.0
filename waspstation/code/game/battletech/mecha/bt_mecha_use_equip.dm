@@ -20,7 +20,7 @@
 	if(!mech_head)
 		//no headless chickenwalkers here
 		return
-	else if(mech_head.internal_damage & MECHA_INT_CONTROL_LOST)
+	else if(check_control_damage())
 		if(!target)
 			return
 		target = pick(view(3, target))
@@ -82,23 +82,6 @@
 
 /obj/battletech/mecha/proc/range_action(atom/target)
 	return
-
-/obj/battletech/mecha/onMouseMove(object,location,control,params)
-	if(!pilot || !pilot.client || pilot.incapacitated())
-		return // I don't know what's going on.
-	//TODO inhand check for control joystick
-
-	var/list/params_list = params2list(params)
-	var/sl_list = splittext(params_list["screen-loc"],",")
-	var/sl_x_list = splittext(sl_list[1], ":")
-	var/sl_y_list = splittext(sl_list[2], ":")
-	var/view_list = isnum(pilot.client.view) ? list("[pilot.client.view*2+1]","[pilot.client.view*2+1]") : splittext(pilot.client.view, "x")
-	var/dx = text2num(sl_x_list[1]) + (text2num(sl_x_list[2]) / world.icon_size) - 1 - text2num(view_list[1]) / 2
-	var/dy = text2num(sl_y_list[1]) + (text2num(sl_y_list[2]) / world.icon_size) - 1 - text2num(view_list[2]) / 2
-	if(sqrt(dx*dx+dy*dy) > 1)
-		torso_twist_desired_angle = 90 - ATAN2(dx, dy)
-	else
-		torso_twist_desired_angle = null
 
 /obj/battletech/mecha/proc/bt_mech_melee_kick(obj/battletech/mecha/attacking_mech)
 	return

@@ -1,4 +1,4 @@
-/obj/battletech/mecha/process_pilot_ui()
+/obj/battletech/mecha/proc/process_pilot_ui()
 	update_throttle_alerts()
 	powerplant.update_powerplant_alerts()
 
@@ -28,8 +28,27 @@
 			break  // all good
 		checking = checking.loc
 
-/obj/battletech/mecha/clear_pilot_ui()
+/obj/battletech/mecha/proc/clear_pilot_ui()
 	pilot.clear_alert("throttle")
 	pilot.clear_alert("powerplant alerts")
 	pilot.clear_alert("chassis doll")
 	RemoveActions(pilot, human_pilot=1)
+
+
+/obj/battletech/mecha/proc/diag_hud_set_mechintegrity()
+	//TODO: Diagnostic Doll for UI, probably H/CT/LT/RT/LA/RA/LG/RG based? or just average?
+
+/obj/battletech/mecha/proc/diag_hud_set_mechheat()
+	var/image/holder = hud_list[DIAG_BATT_HUD]
+	var/icon/I = icon(icon, icon_state, dir)
+	holder.pixel_y = I.Height() - world.icon_size
+	var/heatlevel = (current_heat / maximum_heat) * 100
+	holder.icon_state = "hudbatt[RoundDiagBar(heatlevel)]"
+
+/obj/battletech/mecha/proc/diag_hud_set_mechstat()
+	var/image/holder = hud_list[DIAG_STAT_HUD]
+	var/icon/I = icon(icon, icon_state, dir)
+	holder.pixel_y = I.Height() - world.icon_size
+	holder.icon_state = null
+	if(check_control_damage())
+		holder.icon_state = "hudwarn"
