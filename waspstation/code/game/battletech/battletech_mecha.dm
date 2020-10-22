@@ -197,7 +197,7 @@
 /obj/battletech/mecha/process()
 	process_movement()
 
-	if(last_slowprocess_tick + 10 >= world.time)]
+	if(last_slowprocess_tick + 10 >= world.time)
 		last_slowprocess_tick = world.time
 		process_atmospherics()
 
@@ -272,9 +272,13 @@
 /obj/battletech/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(pilot, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.</span>")
+	eject_action.refresh()
+	user.update_action_buttons()
 	if(do_after(pilot, has_gravity() ? exit_delay : 0 , target = src))
 		to_chat(pilot, "<span class='notice'>You exit the mech.</span>")
 		go_out()
 	else
+		eject_action.refresh()
+		user.update_action_buttons()
 		to_chat(pilot, "<span class='notice'>You stop exiting the mech. Weapons are enabled again.</span>")
 	is_currently_ejecting = FALSE

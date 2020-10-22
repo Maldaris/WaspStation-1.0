@@ -10,10 +10,13 @@
 #define CHANNEL_BUZZ 1012
 #define CHANNEL_BICYCLE 1011
 
+// See waspstation/code/datums/battletech/bt_betty.dm
+// For channels 1010 - 1008
+
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1015
+#define CHANNEL_HIGHEST_AVAILABLE 1007 // WaspStation Edit - Battletech Mecha
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 

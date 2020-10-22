@@ -213,12 +213,12 @@
 
 		if(torso_twist_angle < torso_twist_desired_angle)
 			torso_twist_angle += torso_twist_traverse_rate
-			if(floor(abs(torso_twist_desired_angle - torso_twist_angle)) < torso_twist_traverse_rate)
+			if(round(abs(torso_twist_desired_angle - torso_twist_angle)) < torso_twist_traverse_rate)
 				torso_twist_angle = torso_twist_desired_angle
 
 		if(torso_twist_angle > torso_twist_desired_angle)
 			torso_twist_angle -= torso_twist_traverse_rate
-			if(floor(abs(torso_twist_desired_angle - torso_twist_angle)) < torso_twist_traverse_rate)
+			if(round(abs(torso_twist_desired_angle - torso_twist_angle)) < torso_twist_traverse_rate)
 				torso_twist_angle = torso_twist_desired_angle
 
 		if(world.time >= (movement_tickrate * bt_diagonal_move_macro(movement_dir) ? 1.41421356237 : 1) + movement_last_tick)
@@ -226,5 +226,4 @@
 			if(!step_silent)
 				src.play_stepsound()
 			movement_last_tick = world.time
-		if(world.time >= ())
 #undef bt_diagonal_move_macro

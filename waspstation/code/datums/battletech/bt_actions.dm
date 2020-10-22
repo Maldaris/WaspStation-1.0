@@ -24,7 +24,25 @@
 		return
 	if(!mech || !mech.pilot != owner)
 		return
+	if(!mech.powerplant.is_shutdown())
+		button_icon_state = "mech_eject_emergency-progress"
+		GLOB.bt_bitchin_betty.play_sound(mech, "eject")
+		GLOB.bt_bitchin_betty.play_sound(mech, "ejecting")
+	else
+		button_icon_state = "mech_eject-progress"
+		GLOB.bt_bitchin_betty.play_sound(owner, "shutdown")
 	mech.container_resist(mech.pilot)
+
+/datum/action/innate/battletech/mecha/mech_eject/proc/refresh()
+	if(!owner)
+		return
+	if(!mech || !mech.pilot != owner)
+		return
+
+	if(mech.powerplant.is_shutdown())
+		button_icon_state = "mech_eject[mech.is_currently_ejecting ? "-progress" : ""]"
+	else
+		button_icon_state = "mech_eject[mech.is_currently_ejecting ? "-progress" : ""]"
 
 /datum/action/innate/battletech/mecha/mech_toggle_internals
 	name = "Toggle Internal Airtank Usage"
