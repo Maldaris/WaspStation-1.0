@@ -8,7 +8,7 @@ export const HelmConsole = (props, context) => {
   const { act, data, config } = useBackend(context);
   const { canFly, mapRef, isViewer } = data;
   return (
-    <Window resizable>
+    <Window height={708} width={870} resizable>
       <div className="CameraConsole__left">
         <Window.Content>
           {!isViewer && canFly && (
