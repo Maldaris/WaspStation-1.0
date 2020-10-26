@@ -688,7 +688,7 @@ GLOBAL_LIST_INIT(WALLITEMS, typecacheof(list(
 	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio/simple_vent_controller,
 	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment,
-	/obj/structure/sign/picture_frame
+	/obj/structure/sign/picture_frame, /obj/machinery/bounty_board
 	)))
 
 GLOBAL_LIST_INIT(WALLITEMS_EXTERNAL, typecacheof(list(
@@ -1494,28 +1494,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		for(var/i in 1 to items_list[each_item])
 			new each_item(where_to)
 
-//sends a message to chat
-//config_setting should be one of the following
-//null - noop
-//empty string - use TgsTargetBroadcast with admin_only = FALSE
-//other string - use TgsChatBroadcast with the tag that matches config_setting, only works with TGS4, if using TGS3 the above method is used
-/proc/send2chat(message, config_setting)
-	if(config_setting == null || !world.TgsAvailable())
-		return
-
-	var/datum/tgs_version/version = world.TgsVersion()
-	if(config_setting == "" || version.suite == 3)
-		world.TgsTargetedChatBroadcast(message, FALSE)
-		return
-
-	var/list/channels_to_use = list()
-	for(var/I in world.TgsChatChannelInfo())
-		var/datum/tgs_chat_channel/channel = I
-		if(channel.tag == config_setting)
-			channels_to_use += channel
-
-	if(channels_to_use.len)
-		world.TgsChatBroadcast()
 
 /proc/num2sign(numeric)
 	if(numeric > 0)
@@ -1530,47 +1508,3 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return call(source, proctype)(arglist(arguments))
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
-
-// Converts browser keycodes to BYOND keycodes.
-/proc/browser_keycode_to_byond(keycode)
-	keycode = text2num(keycode)
-	switch(keycode)
-		// letters and numbers
-		if(65 to 90, 48 to 57)
-			return ascii2text(keycode)
-		if(17)
-			return "Ctrl"
-		if(18)
-			return "Alt"
-		if(16)
-			return "Shift"
-		if(37)
-			return "West"
-		if(38)
-			return "North"
-		if(39)
-			return "East"
-		if(40)
-			return "South"
-		if(45)
-			return "Insert"
-		if(46)
-			return "Delete"
-		if(36)
-			return "Northwest"
-		if(35)
-			return "Southwest"
-		if(33)
-			return "Northeast"
-		if(34)
-			return "Southeast"
-		if(112 to 123)
-			return "F[keycode-111]"
-		if(96 to 105)
-			return "Numpad[keycode-96]"
-		if(188)
-			return ","
-		if(190)
-			return "."
-		if(189)
-			return "-"

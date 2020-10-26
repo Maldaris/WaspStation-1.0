@@ -89,10 +89,14 @@
 		spark_system = null
 	return ..()
 
-/obj/machinery/door/proc/try_safety_unlock(mob/user)
-	if(safety_mode && !hasPower() && density)
-		to_chat(user, "<span class='notice'>You begin unlocking the airlock safety mechanism...</span>")
-		if(do_after(user, 15 SECONDS, target = src))
+/obj/machinery/door/proc/try_safety_unlock(mob/user, closing = FALSE)
+	if(safety_mode && !hasPower() && (closing || density))
+		if(locked)
+			to_chat(user, "<span class='notice'>You begin to lift [src]'s bolt with the safety mechanism...</span>")
+			if(do_after(user, 20 SECONDS, target = src)) //unbolting takes 20 seconds
+				unlock()
+		to_chat(user, "<span class='notice'>You begin [density ? "opening" : "closing"] [src] with the safety mechanism...</span>")
+		if((!density && do_after(user, 5 SECONDS, target = src)) || do_after(user, 15 SECONDS, target = src)) //closing takes 5 seconds, opening takes 15
 			try_to_crowbar(null, user)
 			return TRUE
 	return FALSE
@@ -124,10 +128,7 @@
 				if(world.time - mecha.occupant.last_bumped <= 10)
 					return
 				mecha.occupant.last_bumped = world.time
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
-				open()
-			else
-				do_animate("deny")
+				bumpopen(mecha.occupant) //there was likely a reason for this being snowflaked, but we can worry about that if/when it causes issues
 		return
 
 	if(isitem(AM))
@@ -171,7 +172,7 @@
 	. = ..()
 	if(.)
 		return
-	if(try_safety_unlock(user))
+	if(try_safety_unlock(user, TRUE))
 		return
 	return try_to_activate_door(user)
 

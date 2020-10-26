@@ -720,6 +720,14 @@
 	build_path = /obj/item/wallframe/newscaster
 	category = list("initial", "Construction")
 
+/datum/design/bounty_board_frame
+	name = "Bounty Board Frame"
+	id = "bountyboard_frame"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 14000, /datum/material/glass = 8000)
+	build_path = /obj/item/wallframe/bounty_board
+	category = list("initial", "Construction")
+
 /datum/design/syringe
 	name = "Syringe"
 	id = "syringe"
@@ -755,6 +763,7 @@
 	category = list("initial", "Misc")
 
 //hacked autolathe recipes
+// Waspstation - emagged recipies
 /datum/design/flamethrower
 	name = "Flamethrower"
 	id = "flamethrower"
@@ -801,7 +810,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_casing/shotgun
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/buckshot_shell
 	name = "Buckshot Shell"
@@ -809,7 +818,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_casing/shotgun/buckshot
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/shotgun_dart
 	name = "Shotgun Dart"
@@ -817,7 +826,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_casing/shotgun/dart
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/incendiary_slug
 	name = "Incendiary Slug"
@@ -825,7 +834,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_casing/shotgun/incendiary
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/riot_dart
 	name = "Foam Riot Dart"
@@ -849,7 +858,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_casing/a357
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/c10mm
 	name = "Ammo Box (10mm)"
@@ -857,7 +866,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
 	build_path = /obj/item/ammo_box/c10mm
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/c45
 	name = "Ammo Box (.45)"
@@ -865,7 +874,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
 	build_path = /obj/item/ammo_box/c45
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/c9mm
 	name = "Ammo Box (9mm)"
@@ -873,7 +882,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
 	build_path = /obj/item/ammo_box/c9mm
-	category = list("hacked", "Security")
+	category = list("emagged", "Security")
 
 /datum/design/cleaver
 	name = "Butcher's Cleaver"
