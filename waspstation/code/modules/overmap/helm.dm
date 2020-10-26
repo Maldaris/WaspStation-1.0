@@ -38,7 +38,7 @@
 	. = ..()
 	LAZYREMOVE(SSovermap.helms, src)
 
-/obj/machinery/computer/helm/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null)
+/obj/machinery/computer/helm/ui_interact(mob/user, datum/tgui/ui = null)
 	// Update UI
 	if(!current_ship)
 		set_ship()
@@ -60,7 +60,7 @@
 			user.client.register_map_obj(current_ship.cam_plane_master)
 			user.client.register_map_obj(current_ship.cam_background)
 		// Open UI
-		ui = new(user, src, ui_key, "HelmConsole")
+		ui = new(user, src, interface = "HelmConsole", title = name)
 		ui.open()
 
 /obj/machinery/computer/helm/ui_data(mob/user)
