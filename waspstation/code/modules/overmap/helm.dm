@@ -31,14 +31,14 @@
 		else if(is_station_level(z) && !A?.outdoors)
 			id = MAIN_OVERMAP_OBJECT_ID
 		else
-			return
+			return FALSE
 	current_ship = SSovermap.get_overmap_object_by_id(id)
 
 /obj/machinery/computer/helm/Destroy()
 	. = ..()
 	LAZYREMOVE(SSovermap.helms, src)
 
-/obj/machinery/computer/helm/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/computer/helm/ui_interact(mob/user, datum/tgui/ui)
 	// Update UI
 	if(!current_ship)
 		set_ship()
@@ -59,8 +59,10 @@
 			user.client.register_map_obj(current_ship.cam_screen)
 			user.client.register_map_obj(current_ship.cam_plane_master)
 			user.client.register_map_obj(current_ship.cam_background)
+
+			current_ship.refresh_engines()
 		// Open UI
-		ui = new(user, src, interface = "HelmConsole", title = name)
+		ui = new(user, src, "HelmConsole", name)
 		ui.open()
 
 /obj/machinery/computer/helm/ui_data(mob/user)
@@ -83,6 +85,7 @@
 		.["otherInfo"] += list(other_data)
 
 	if(istype(current_ship, /obj/structure/overmap/ship))
+		.["canFly"] = TRUE
 		.["state"] = current_ship.state
 		.["docked"] = current_ship.docked ? TRUE : FALSE
 		.["heading"] = dir2angle(current_ship.get_heading())
@@ -111,7 +114,6 @@
 
 /obj/machinery/computer/helm/ui_static_data(mob/user)
 	. = list()
-	.["canFly"] = istype(current_ship, /obj/structure/overmap/ship)
 	.["isViewer"] = viewer
 	.["mapRef"] = current_ship.map_name
 
@@ -121,9 +123,9 @@
 		return
 
 	switch(action)
-		if("dock")
-			var/obj/structure/overmap/to_dock = locate(params["ship_to_dock"])
-			say(current_ship.dock(to_dock))
+		if("act_overmap")
+			var/obj/structure/overmap/to_act = locate(params["ship_to_act"])
+			say(current_ship.dock(to_act))
 		if("undock")
 			say(current_ship.undock())
 		if("reload_ship")
