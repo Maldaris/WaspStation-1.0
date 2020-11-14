@@ -38,7 +38,8 @@ GLOBAL_LIST_INIT(spacepod_verb_list,  list(
 		SPACEPOD_SLOT_MISC = 1,
 		SPACEPOD_SLOT_CARGO = 2,
 		SPACEPOD_SLOT_WEAPON = 1,
-		SPACEPOD_SLOT_LOCK = 1)
+		SPACEPOD_SLOT_LOCK = 1,
+		SPACEPOD_SLOT_FTL = 1)
 	var/obj/item/spacepod_equipment/lock/lock
 	var/obj/item/spacepod_equipment/weaponry/weapon
 	var/next_firetime = 0

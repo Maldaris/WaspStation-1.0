@@ -25,6 +25,113 @@
 /obj/item/spacepod_equipment/proc/can_uninstall(mob/user)
 	return TRUE
 
+/obj/item/spacepod_equipment/upgradeable
+	var/list/required_parts = list()
+	var/list/contained_parts = null
+
+/obj/item/spacepod_equipment/upgradeable/proc/check_parts()
+	if(!contained_parts || !istype(contained_parts, /list))
+		return FALSE
+	else if(required_parts.len == contained_parts.len)
+		for(var/obj/item/A in required_parts)
+			var/A_count
+			if(!isnum(required_parts[A]))
+				A_count = 1
+			else
+				A_count = required_parts[A]
+			for(var/obj/item/B in contained_parts)
+				if(istype(B, A))
+					var/A_is_stack = required_parts[A] > 1
+					var/B_is_stack = istype(B, /obj/item/stack)
+					if(!A_is_stack)
+						continue
+					else if(A_is_stack && !B_is_stack)
+						return FALSE
+					else if(A_is_stack && B_is_stack)
+						var/obj/item/stack/SB = B
+						if(SB.get_amount() < required_parts[A])
+							return FALSE
+						else
+							continue
+				else
+					return FALSE
+		return TRUE
+	else
+		return FALSE
+
+/obj/item/spacepod_equipment/upgradeable/can_install(obj/spacepod/SP, mob/user)
+	. = ..()
+	if(!src.check_parts())
+		to_chat(user, "<span class='warning'>This equipment lacks the necessary parts to install it!</span>")
+		return FALSE
+	else
+		return TRUE
+
+/obj/item/spacepod_equipment/upgradeable/proc/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
+	if(!istype(W))
+		return FALSE
+	var/shouldplaysound = 0
+	if(!contained_parts)
+		contained_parts = list()
+	var/all_needed_parts = required_parts.Copy()
+	for(var/obj/item/A in required_parts)
+		var/seen = FALSE
+		for(var/obj/item/B in contained_parts)
+			if(istype(B, A.type))
+				seen = TRUE
+				break
+		if(!seen)
+			all_needed_parts[A] = required_parts[A]
+
+	for(var/obj/item/A in contained_parts)
+		var/A_count
+		if(!isnum(required_parts[A]))
+			A_count = 1
+		else
+			A_count = required_parts[A]
+		for(var/obj/item/B in W.contents)
+			if(!istype(A.type, B))
+				continue
+			else if(A_count > 1 && !istype(B, /obj/item/stack))
+				continue
+			if(A_count > 1)
+				var/obj/item/stack/SB = B
+				if(SB.get_amount() < A_count)
+					continue
+				SB.use(A_count)
+				var/obj/item/stack/SN = new SB.merge_type(null, used_amt)
+				contained_parts += SN
+				SEND_SIGNAL(W, COMSIG_TRY_STORAGE_INSERT, A, null, null, TRUE)
+				contained_parts -= A
+				to_chat(user, "<span class='notice'>[capitalize(A.name)] replaced with [B.name].</span>")
+				shouldplaysound = 1 //Only play the sound when parts are actually replaced!
+				break
+			else
+				if(SEND_SIGNAL(W, COMSIG_TRY_STORAGE_TAKE, B, src))
+					contained_parts += B
+					B.moveToNullspace()
+					SEND_SIGNAL(W, COMSIG_TRY_STORAGE_INSERT, A, null, null, TRUE)
+					contained_parts -= A
+					to_chat(user, "<span class='notice'>[capitalize(A.name)] replaced with [B.name].</span>")
+					shouldplaysound = 1 //Only play the sound when parts are actually replaced!
+					break
+
+	if(contained_parts.len == 0)
+		contained_parts = null
+		return FALSE
+	else
+		to_chat(user, display_parts(user))
+	if(shouldplaysound)
+		W.play_rped_sound()
+	return TRUE
+
+/obj/item/spacepod_equipment/upgradeable/proc/display_parts(mob/user)
+	. = list()
+	. += "<span class='notice'>It contains the following parts:</span>"
+	for(var/obj/item/C in contained_parts)`
+		. += "<span class='notice'>[icon2html(C, user)] \A [C].</span>"
+	. = jointext(., "")
+
 /obj/item/spacepod_equipment/weaponry
 	slot = SPACEPOD_SLOT_WEAPON
 	var/projectile_type

@@ -16,3 +16,4 @@
 #define SPACEPOD_SLOT_MISC "misc"
 #define SPACEPOD_SLOT_WEAPON "weapon"
 #define SPACEPOD_SLOT_LOCK "lock"
+#define SPACEPOD_SLOT_FTL "ftl"
