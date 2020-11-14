@@ -128,7 +128,7 @@
 /obj/item/spacepod_equipment/upgradeable/proc/display_parts(mob/user)
 	. = list()
 	. += "<span class='notice'>It contains the following parts:</span>"
-	for(var/obj/item/C in contained_parts)`
+	for(var/obj/item/C in contained_parts)
 		. += "<span class='notice'>[icon2html(C, user)] \A [C].</span>"
 	. = jointext(., "")
 
