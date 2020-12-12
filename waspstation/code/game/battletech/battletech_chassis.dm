@@ -27,7 +27,6 @@
 	name = "chassis component - head"
 	desc = "A head component used in the construction of a Battlemech. Contains a cockpit and computer interface"
 	slot = BT_CHASSIS_HEAD
-	var/internal_damage = 0 //bitflag determining if the head has lost control
 
 /obj/battletech/chassis/center_torso
 	name = "chassis component - center torso"

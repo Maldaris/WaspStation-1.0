@@ -55,7 +55,7 @@
 				control_config.cycle_to_next()
 			return
 	else
-		if(mech_head.internal_damage & MECHA_INT_CONTROL_LOST)
+		if(mech_head.disabled)
 			var/list/possible_targets = oview(1, src)
 			if(!length(possible_targets))
 				return
