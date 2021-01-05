@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	36
+#define SAVEFILE_VERSION_MAX	37
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -69,9 +69,55 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(key_bindings["ShiftQ"] == "quick_equip_suit_storage")
 			key_bindings["ShiftQ"] = list("quick_equip_suit_storage")
 
+	if(current_version < 36.5)
+		READ_FILE(S["equipped_gear"], equipped_gear)
+
+	if(current_version < 37)
+		if(clientfps == 0)
+			clientfps = -1
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	return
+
+/// checks through keybindings for outdated unbound keys and updates them
+/datum/preferences/proc/check_keybindings()
+	if(!parent)
+		return
+	var/list/user_binds = list()
+	for (var/key in key_bindings)
+		for(var/kb_name in key_bindings[key])
+			user_binds[kb_name] += list(key)
+	var/list/notadded = list()
+	for (var/name in GLOB.keybindings_by_name)
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+		if(length(user_binds[kb.name]))
+			continue // key is unbound and or bound to something
+		var/addedbind = FALSE
+		if(hotkeys)
+			for(var/hotkeytobind in kb.classic_keys)
+				if(!length(key_bindings[hotkeytobind]))
+					LAZYADD(key_bindings[hotkeytobind], kb.name)
+					addedbind = TRUE
+		else
+			for(var/classickeytobind in kb.classic_keys)
+				if(!length(key_bindings[classickeytobind]))
+					LAZYADD(key_bindings[classickeytobind], kb.name)
+					addedbind = TRUE
+		if(!addedbind)
+			notadded += kb
+	if(length(notadded))
+		addtimer(CALLBACK(src, .proc/announce_conflict, notadded), 5 SECONDS)
+
+/datum/preferences/proc/announce_conflict(list/notadded)
+	to_chat(parent, "<span class='userdanger'>KEYBINDING CONFLICT!!!\n\
+	There are new keybindings that have defaults bound to keys you already set, They will default to Unbound. You can bind them in Setup Character or Game Preferences\n\
+	<a href='?_src_=prefs;preference=tab;tab=3'>Or you can click here to go straight to the keybindings page</a></span>")
+	for(var/item in notadded)
+		var/datum/keybinding/conflicted = item
+		to_chat(parent, "<span class='userdanger'>[conflicted.category]: [conflicted.full_name] needs updating")
+		LAZYADD(key_bindings["Unbound"], conflicted.name) // set it to unbound to prevent this from opening up again in the future
+
+
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -141,10 +187,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// Custom hotkeys
 	READ_FILE(S["key_bindings"], key_bindings)
+	check_keybindings()
 
 	//Wasp Begin - Custom Prefs
 	READ_FILE(S["purchased_gear"], purchased_gear)
-	READ_FILE(S["equipped_gear"], equipped_gear)
 	READ_FILE(S["crew_objectives"], crew_objectives)
 	READ_FILE(S["show_credits"], show_credits)
 	//Wasp End
@@ -214,8 +260,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	if(!purchased_gear)
 		purchased_gear = list()
-	if(!equipped_gear)
-		equipped_gear = list()
 
 	return TRUE
 
@@ -270,7 +314,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["purchased_gear"], purchased_gear)
-	WRITE_FILE(S["equipped_gear"], equipped_gear)
 	WRITE_FILE(S["show_credits"], show_credits)
 	WRITE_FILE(S["key_bindings"], key_bindings)
 	return TRUE
@@ -337,6 +380,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Wasp Begin
 
+	READ_FILE(S["equipped_gear"], equipped_gear)
 	READ_FILE(S["jumpsuit_style"], jumpsuit_style)
 	READ_FILE(S["exowear"], exowear)
 	READ_FILE(S["feature_moth_fluff"], features["moth_fluff"])
@@ -355,6 +399,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			if(alt_titles_preferences[job.title])
 				if(!((alt_titles_preferences[job.title] in job.alt_titles) || (alt_titles_preferences[job.title] == job.senior_title)))
 					alt_titles_preferences.Remove(job.title)
+
+	if(!equipped_gear)
+		equipped_gear = list()
 
 	//Wasp End
 
@@ -494,8 +541,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["undershirt"]			, undershirt)
 	WRITE_FILE(S["socks"]			, socks)
 	WRITE_FILE(S["backpack"]			, backpack)
-	WRITE_FILE(S["jumpsuit_style"]			, jumpsuit_style)
-	WRITE_FILE(S["exowear"]			, exowear)
 	WRITE_FILE(S["uplink_loc"]			, uplink_spawn_loc)
 	WRITE_FILE(S["randomise"]		, randomise)
 	WRITE_FILE(S["species"]			, pref_species.id)
@@ -512,8 +557,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_lizard_body_markings"]	, features["body_markings"])
 	WRITE_FILE(S["feature_lizard_legs"]			, features["legs"])
 	WRITE_FILE(S["feature_moth_wings"]			, features["moth_wings"])
-	WRITE_FILE(S["feature_moth_fluff"]			, features["moth_fluff"])
 	WRITE_FILE(S["feature_moth_markings"]		, features["moth_markings"])
+
+	//Wasp begin
+	WRITE_FILE(S["jumpsuit_style"]				, jumpsuit_style)
+	WRITE_FILE(S["exowear"]						, exowear)
+	WRITE_FILE(S["equipped_gear"]				, equipped_gear)
+
+	WRITE_FILE(S["feature_moth_fluff"]			, features["moth_fluff"])
 	WRITE_FILE(S["feature_spider_legs"]			, features["spider_legs"])
 	WRITE_FILE(S["feature_spider_spinneret"]	, features["spider_spinneret"])
 	WRITE_FILE(S["feature_spider_mandibles"]	, features["spider_mandibles"])
@@ -527,6 +578,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
+
+	//Wasp End
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

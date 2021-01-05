@@ -130,9 +130,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/exp = list()
 	var/list/menuoptions
 
-	//Loadout stuff
+	///Gear the CLIENT has purchased
 	var/list/purchased_gear = list()
+	///Gear the CHARACTER has equipped
 	var/list/equipped_gear = list()
+	///Gear tab currently being viewed
 	var/gear_tab = "General"
 
 	var/action_buttons_screen_locs = list()
@@ -162,7 +164,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//we couldn't load character data so just randomize the character appearance + name
 	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
-	C?.update_movement_keys(src)
+	C?.set_macros()
 	real_name = pref_species.random_name(gender,1)
 	if(!loaded_preferences_successfully)
 		save_preferences()
@@ -174,15 +176,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 #define MAX_MUTANT_ROWS 4
 
 /datum/preferences/proc/ShowChoices(mob/user)
-	switch(current_tab) //It's ugly that there's two of the same switches, but this needs to be run before the preview icon updates soooooo
-		if(0)
-			show_gear = TRUE
-			show_loadout = FALSE
-		if(1)
-			show_gear = FALSE
-			show_loadout = FALSE
+	show_loadout = (current_tab != 1) ? show_loadout : FALSE
 	show_gear = (current_tab != 1)
-	show_loadout = (current_tab != 1)
 	if(!user || !user.client)
 		return
 	if(slot_randomized)
@@ -683,6 +678,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</tr></table>"
 
 		if(2) //Loadout
+			if(path)
+				var/savefile/S = new /savefile(path)
+				if(S)
+					dat += "<center>"
+					var/name
+					var/unspaced_slots = 0
+					for(var/i=1, i<=max_save_slots, i++)
+						unspaced_slots++
+						if(unspaced_slots > 4)
+							dat += "<br>"
+							unspaced_slots = 0
+						S.cd = "/character[i]"
+						S["real_name"] >> name
+						if(!name)
+							name = "Character[i]"
+						dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
+					dat += "</center>"
+					dat += "<HR>"
 			var/list/type_blacklist = list()
 			if(equipped_gear && equipped_gear.len)
 				for(var/i = 1, i <= equipped_gear.len, i++)
@@ -726,9 +739,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			for(var/gear_name in LC.gear)
 				var/datum/gear/G = LC.gear[gear_name]
 				var/ticked = (G.display_name in equipped_gear)
-
-				if(G.hidden)
-					continue
 
 				dat += "<tr style='vertical-align:top;'><td width=20%>[G.display_name]\n"
 				if(G.display_name in purchased_gear)
@@ -974,7 +984,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>[category]</h3>"
 				for (var/i in kb_categories[category])
 					var/datum/keybinding/kb = i
-					if(!length(user_binds[kb.name]))
+					if(!length(user_binds[kb.name]) || user_binds[kb.name][1] == "Unbound")
 						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>Unbound</a>"
 						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
 						if(LAZYLEN(default_keys))
@@ -1450,6 +1460,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				equipped_gear -= TG.display_name
 			else
 				var/list/type_blacklist = list()
+				var/list/slot_blacklist = list()
 				for(var/gear_name in equipped_gear)
 					var/datum/gear/G = GLOB.gear_datums[gear_name]
 					if(istype(G))
@@ -1457,7 +1468,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							continue
 						type_blacklist += G.subtype_path
 				if((TG.display_name in purchased_gear))
-					if(!(TG.subtype_path in type_blacklist))
+					if(!(TG.subtype_path in type_blacklist) || !(TG.slot in slot_blacklist))
 						equipped_gear += TG.display_name
 					else
 						to_chat(user, "<span class='warning'>Can't equip [TG.display_name]. It conflicts with an already-equipped item.</span>")
@@ -1971,9 +1982,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(clear_key)
 						if(key_bindings[old_key])
 							key_bindings[old_key] -= kb_name
+							LAZYADD(key_bindings["Unbound"], kb_name)
 							if(!length(key_bindings[old_key]))
 								key_bindings -= old_key
 						user << browse(null, "window=capturekeypress")
+						user.client.set_macros()
 						save_preferences()
 						ShowChoices(user)
 						return
@@ -1998,6 +2011,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							full_key = "[AltMod][CtrlMod][new_key]"
 						else
 							full_key = "[AltMod][CtrlMod][ShiftMod][numpad][new_key]"
+					if(kb_name in key_bindings[full_key]) //We pressed the same key combination that was already bound here, so let's remove to re-add and re-sort.
+						key_bindings[full_key] -= kb_name
 					if(key_bindings[old_key])
 						key_bindings[old_key] -= kb_name
 						if(!length(key_bindings[old_key]))
@@ -2006,17 +2021,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					key_bindings[full_key] = sortList(key_bindings[full_key])
 
 					user << browse(null, "window=capturekeypress")
-					user.client.update_movement_keys()
+					user.client.set_macros()
 					save_preferences()
 
 				if("keybindings_reset")
-					var/choice = tgalert(user, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
+					var/choice = tgui_alert(user, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", list("Hotkey", "Classic", "Cancel"))
 					if(choice == "Cancel")
 						ShowChoices(user)
 						return
 					hotkeys = (choice == "Hotkey")
 					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
-					user.client.update_movement_keys()
+					user.client.set_macros()
 
 				if("chat_on_map")
 					chat_on_map = !chat_on_map
@@ -2184,6 +2199,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("tab")
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
+						if(current_tab == 2)
+							show_loadout = TRUE
 
 	ShowChoices(user)
 	return 1
@@ -2245,7 +2262,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		for(var/gear in usr.client.prefs.equipped_gear)
 			var/datum/gear/G = GLOB.gear_datums[gear]
 			if(G && G.slot)
-				if(!character.equip_to_slot_or_del(G.spawn_item(character), G.slot))
+				if(!character.equip_to_slot_or_del(G.spawn_item(character, owner = character), G.slot))
 					continue
 
 	var/datum/species/chosen_species
