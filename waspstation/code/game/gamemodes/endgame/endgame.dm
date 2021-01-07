@@ -13,8 +13,9 @@
 
 /datum/cinematic/bluespace_cataclysm/content()
 	flick("intro_cataclysm", screen)
-	sleep(35)
+	sleep(30)
 	cinematic_sound((sound('sound/effects/cascade.ogg')))
+	flick("void", screen)
 	special()
 	screen.icon_state = "summary_cataclysm"
 
