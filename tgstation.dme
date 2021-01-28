@@ -3227,6 +3227,8 @@
 #include "waspstation\code\datums\battletech\bt_betty.dm"
 #include "waspstation\code\datums\battletech\bt_control_config.dm"
 #include "waspstation\code\datums\battletech\betty\bt_betty_play_sound.dm"
+#include "waspstation\code\datums\battletech\equipment\bt_equipment.dm"
+#include "waspstation\code\datums\battletech\equipment\bt_structure.dm"
 #include "waspstation\code\datums\brain_damage\brain_trauma.dm"
 #include "waspstation\code\datums\brain_damage\phobia.dm"
 #include "waspstation\code\datums\components\outline.dm"

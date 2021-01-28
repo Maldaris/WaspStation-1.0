@@ -19,4 +19,4 @@
 
 /obj/battletech/equipment/proc/start_cooldown()
 	on_cooldown = TRUE
-	VARSET_CALLBACK(src, on_cooldown, cooldown_duration)
+	addtimer(VARSET_CALLBACK(src, on_cooldown, FALSE), cooldown_duration)

@@ -16,6 +16,8 @@
 	var/installed_mech = null
 	var/disabled = FALSE
 	var/damage = BT_CHASSIS_PRISTINE
+	var/datum/battletech/equipment/armor/armor_dat = new
+	var/datum/battletech/equipment/structure/structure_dat = new
 
 /obj/battletech/chassis/proc/is_disabled()
 	return disabled

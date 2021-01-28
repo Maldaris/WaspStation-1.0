@@ -1,0 +1,2 @@
+
+/datum/battletech/equipment/structure
