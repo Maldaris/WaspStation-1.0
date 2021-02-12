@@ -1,0 +1,1 @@
+/obj/battletech/mecha/assault

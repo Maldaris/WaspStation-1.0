@@ -1,7 +1,7 @@
 /obj/battletech/mecha
 	name = "mecha"
 	desc = "Battletech Mecha"
-	icon = 'icons/mecha/mecha.dmi'
+	icon = 'whitesands/icons/obj/battletech/mecha.dmi'
 	density = TRUE
 	opacity = 1
 	move_force = MOVE_FORCE_VERY_STRONG

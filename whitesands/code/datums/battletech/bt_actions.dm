@@ -84,7 +84,11 @@
 /datum/action/innate/battletech/mecha/mech_open_configuration/Activate()
 
 /datum/action/innate/battletech/mecha/mech_shutdown
+	name = "Shutdown"
+	button_icon_state = "mech_shutdown"
 /datum/action/innate/battletech/mecha/mech_override_overheat_shutdown
+	name = "Toggle Shutdown Override"
+	button_icon_state = "mech_shutdown_override"
 /datum/action/innate/battletech/mecha/mech_toggle_jump_jets
 	name = "Toggle Jump Jets"
 	button_icon_state = "mech_toggle_jump_jets"
