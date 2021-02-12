@@ -16,7 +16,7 @@
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1007 // WaspStation Edit - Battletech Mecha
+#define CHANNEL_HIGHEST_AVAILABLE 1007 // WhiteSands Edit - Battletech Mecha
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 

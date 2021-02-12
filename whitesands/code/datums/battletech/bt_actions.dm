@@ -1,9 +1,9 @@
 /datum/action/innate/battletech
-	icon_icon = 'waspstation/icons/mob/actions/battletech/actions.dmi'
+	icon_icon = 'whitesands/icons/mob/actions/battletech/actions.dmi'
 
 /datum/action/innate/battletech/mecha
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
-	icon_icon = 'waspstation/icons/mob/actions/battletech/actions_mecha.dmi'
+	icon_icon = 'whitesands/icons/mob/actions/battletech/actions_mecha.dmi'
 	var/obj/battletech/mecha/mech
 
 /datum/action/innate/battletech/mecha/Grant(mob/living/L, obj/battletech/mecha/M)

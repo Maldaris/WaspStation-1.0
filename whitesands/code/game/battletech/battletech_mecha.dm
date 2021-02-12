@@ -110,9 +110,9 @@
 	var/stepsound = 'sound/mecha/mechstep.ogg'
 	var/slowstep = 'sound/mecha/mechstep.ogg'
 	var/turnsound = 'sound/mecha/mechturn.ogg'
-	var/torso_twist_sound = 'waspstation/sound/mecha/torso_twist_loop.wav'
-	var/sprint_transition_up = 'waspstation/sound/mecha/run_transition.wav'
-	var/sprint_transition_down = 'waspstation/sound/mecha/walk_transition.wav'
+	var/torso_twist_sound = 'whitesands/sound/mecha/torso_twist_loop.wav'
+	var/sprint_transition_up = 'whitesands/sound/mecha/run_transition.wav'
+	var/sprint_transition_down = 'whitesands/sound/mecha/walk_transition.wav'
 
 	var/enter_delay = 40
 	var/exit_delay = 20
