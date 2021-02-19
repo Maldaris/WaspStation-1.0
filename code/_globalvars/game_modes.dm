@@ -9,3 +9,11 @@ GLOBAL_DATUM(start_state, /datum/station_state) // Used in round-end report
 
 //TODO clear this one up too
 GLOBAL_DATUM(cult_narsie, /obj/singularity/narsie/large/cult)
+
+// White Sands Start - SolGov Representative Objectives
+/datum/sg_referendum_content
+	var/name = "Clowns"
+	var/text = "If you can read this, yell at a coder."
+
+GLOBAL_VAR(sg_referendum, /datum/sg_referendum_content)
+// White Sands End - SolGov Representative Objectives
