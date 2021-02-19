@@ -74,6 +74,19 @@
 					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SEC)
 					D.adjust_money(amount)
 					return
+// White Sands Start - SolGov Representative Objectives
+/datum/datacore/proc/get_crimes_by_offense_name(cname)
+	var/list/datum/data/crime/ret = list()
+	for(var/datum/data/record/R in security)
+		var/list/crimes = R.fields["crim"]
+		for(var/C in crimes)
+			var/datum/data/crime/crime = C
+			if (!istype(crime))
+				continue
+			if (crime.crimeName == cname)
+				ret += crime
+	return ret
+// White Sands End - SolGov Representative Objectives
 
 /**
   * Adds crime to security record.

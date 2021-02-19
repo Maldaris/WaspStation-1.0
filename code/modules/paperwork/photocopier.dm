@@ -105,6 +105,10 @@
 				if(istype(paper_copy, /obj/item/paper/contract/employment))
 					do_copy_loop(CALLBACK(src, .proc/make_devil_paper_copy), usr)
 					return TRUE
+				// SGR Objective Forms
+				if(istype(paper_copy, /obj/item/paper/paperwork/sgr))
+					do_copy_loop(CALLBACK(src, .proc/make_sgr_paper_copy), usr)
+					return TRUE
 			// Copying photo.
 			if(photo_copy)
 				do_copy_loop(CALLBACK(src, .proc/make_photo_copy), usr)
@@ -318,6 +322,39 @@
 	toEmbed.psize_y = 128
 	copied_ass.set_picture(toEmbed, TRUE, TRUE)
 	toner_cartridge.charges -= ASS_TONER_USE
+
+// White Sands Start - SGR Objectives
+/obj/machinery/photocopier/proc/make_sgr_paper_copy(obj/item/paper/paperwork/sgr/to_copy)
+	if(!check_sgr_paperwork())
+		return
+	to_copy = to_copy ? to_copy : paper_copy
+	var/obj/item/paper/paperwork/sgr/copied_paper = new(loc)
+	give_pixel_offset(copied_paper)
+	if(toner_cartridge.charges > 10) // Lots of toner, make it dark.
+		copied_paper.info = "<font color = #101010>"
+	else // No toner? shitty copies for you!
+		copied_paper.info = "<font color = #808080>"
+
+	var/copied_info = to_copy.info
+	copied_info = replacetext(copied_info, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
+	copied_info = replacetext(copied_info, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+	copied_paper.info += copied_info
+	copied_paper.info += "</font>"
+	copied_paper.name = to_copy.name
+	copied_paper.update_icon()
+	copied_paper.stamps = to_copy.stamps
+	if(to_copy.stamped)
+		copied_paper.stamped = to_copy.stamped.Copy()
+	copied_paper.copy_overlays(to_copy, TRUE)
+	toner_cartridge.charges -= PAPER_TONER_USE
+
+	return copied_paper
+
+/obj/machinery/photocopier/proc/check_sgr_paperwork()
+	if (!istype(paper_copy, /obj/item/paper/paperwork/sgr))
+		return FALSE
+	return TRUE
+// White Sands End - SGR Objectives
 
 /**
  * Inserts the item into the copier. Called in `attackby()` after a human mob clicked on the copier with a paper, photo, or document.

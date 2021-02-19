@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	///The department we're sending to
 	var/destination
 	///Departments that just redirect to admins. Accessible by all long-range faxes.
-	var/list/static/admin_departments = list("Central Command")
+	var/list/static/admin_departments = list("Central Command", "SolGov Regional Consulate", "SolGov Automated Processing Network")
 	///Departments that redirect to admins that are accessible by any emagged long-range faxes.
 	var/list/static/hidden_admin_departments = list("Syndicate")
 
@@ -240,9 +240,12 @@ GLOBAL_LIST_EMPTY(alldepartments)
 		return
 
 	use_power(200)
+	var/automated_processing = FALSE
 
 	var/obj/item/to_send
-	if(paper_copy)
+	if(istype(paper_copy, /obj/item/paper/paperwork/sgr))
+		to_send = make_sgr_paper_copy()
+	else if(paper_copy)
 		to_send = make_paper_copy()
 	else if(photo_copy)
 		to_send = make_photo_copy()
@@ -251,14 +254,25 @@ GLOBAL_LIST_EMPTY(alldepartments)
 
 	to_send.moveToNullspace()
 
-	var/datum/fax/admin/A = new /datum/fax/admin()
-	A.name = to_send.name
-	A.from_department = department
-	A.to_department = destination
-	A.origin = src
-	A.message = to_send
-	A.sent_by = sender
-	A.sent_at = world.time
+	if (automated_processing)
+		var/obj/item/paper/paperwork/sgr/candidate_form = to_send
+		if(!candidate_form.completed())
+			var/datum/mind/sender_mind = sender.mind
+			if(!sender_mind)
+				log_runtime("Got automated processing fax for [sender.name] with no mind datum!")
+				return
+			if(!sender_mind.assigned_role || sender_mind.assigned_role == "SolGov Representative")
+				visible_message("<span class='notice'>[src] beeps, \"Biometric check failed. Autoprocessing Services are restricted to SolGov personnel only.\"</span>")
+
+	else
+		var/datum/fax/admin/A = new /datum/fax/admin()
+		A.name = to_send.name
+		A.from_department = department
+		A.to_department = destination
+		A.origin = src
+		A.message = to_send
+		A.sent_by = sender
+		A.sent_at = world.time
 
 	//message badmins that a fax has arrived
 	switch(destination)
@@ -266,6 +280,8 @@ GLOBAL_LIST_EMPTY(alldepartments)
 			send_to_admins(sender, "CENTCOM FAX", destination, to_send, "#006100")
 		if("Syndicate")
 			send_to_admins(sender, "SYNDICATE FAX", destination, to_send, "#DC143C")
+		if("SolGov Regional Consulate")
+			send_to_admins(sender, "SOLGOV FAX", destination, to_send, "#1B4A80")
 	sendcooldown = cooldown_time
 	visible_message("<span class='notice'>[src] beeps, \"Message transmitted successfully.\"</span>")
 

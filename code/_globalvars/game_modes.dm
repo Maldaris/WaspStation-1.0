@@ -15,5 +15,5 @@ GLOBAL_DATUM(cult_narsie, /obj/singularity/narsie/large/cult)
 	var/name = "Clowns"
 	var/text = "If you can read this, yell at a coder."
 
-GLOBAL_VAR(sg_referendum, /datum/sg_referendum_content)
+GLOBAL_DATUM_INIT(sg_referendum, /datum/sg_referendum_content, null)
 // White Sands End - SolGov Representative Objectives

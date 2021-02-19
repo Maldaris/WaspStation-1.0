@@ -3329,6 +3329,7 @@
 #include "whitesands\code\modules\cargo\blackmarket\blackmarket_items\weapons.dm"
 #include "whitesands\code\modules\cargo\bounties\engineering.dm"
 #include "whitesands\code\modules\cargo\exports\large_objects.dm"
+#include "whitesands\code\modules\crew_objectives\sgr_crew_objectives.dm"
 #include "whitesands\code\modules\client\antag_tokens.dm"
 #include "whitesands\code\modules\client\loadout\loadout.dm"
 #include "whitesands\code\modules\client\loadout\loadout_accessories.dm"

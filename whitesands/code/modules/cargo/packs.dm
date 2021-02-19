@@ -220,6 +220,17 @@
 	crate_type = /obj/structure/closet/crate/internals
 	dangerous = TRUE
 
+/datum/supply_pack/security/armory/commander_9mm
+	name = "Commander 9mm Crate"
+	desc = "Contains two standard sidearms for security forces. For when your officers get out-robusted and lose their sidearms."
+	cost = 3500
+	contains = list(
+		/obj/item/gun/ballistic/automatic/pistol/commander,
+		/obj/item/gun/ballistic/automatic/pistol/commander
+	)
+	crate_name = "Commander 9mm Crate"
+	dangerous = TRUE
+
 /datum/supply_pack/security/armory/cool_wt550_ammo
 	name = "WT-550 Auto Rifle Exotic Ammo Crate"
 	desc = "Contains one magazine of armor-piercing and one magazine of incendiary ammunition for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open. Sadly, our manufacturer discontinued the uranium-tipped bullets."
