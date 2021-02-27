@@ -2,28 +2,32 @@
 "aj" = (
 /obj/structure/closet/secure_closet/lethalshots,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/security)
+"aq" = (
+/mob/living/simple_animal/hostile/alien/sentinel,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/security)
 "av" = (
 /mob/living/simple_animal/hostile/alien/sentinel,
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "aw" = (
 /obj/effect/gibspawner/xeno/bodypartless,
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "aP" = (
 /obj/machinery/door/airlock/security/glass,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/security)
 "aV" = (
 /obj/machinery/modular_computer/console{
 	dir = 4
 	},
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "bd" = (
 /turf/open/floor/plasteel/airless,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "bf" = (
 /mob/living/simple_animal/hostile/whitesands/survivor,
 /turf/open/floor/plating/asteroid/whitesands,
@@ -34,14 +38,17 @@
 /area/whitesands/surface/outdoors)
 "bC" = (
 /turf/open/space/basic,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"bG" = (
+/turf/closed/wall/r_wall,
+/area/awaymission/whitesands/spaceport/security)
 "bI" = (
 /obj/machinery/conveyor/auto{
 	dir = 9;
 	verted = -1
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "bM" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -49,11 +56,11 @@
 "bU" = (
 /obj/machinery/door/poddoor/multi_tile/four_tile_hor,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "bX" = (
 /mob/living/simple_animal/hostile/alien/sentinel,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "cu" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/plating/asteroid/whitesands,
@@ -62,66 +69,83 @@
 /obj/structure/table/wood,
 /obj/item/paper_bin/carbon,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
+"cQ" = (
+/obj/machinery/power/smes{
+	charge = 5000000
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "cY" = (
 /obj/structure/closet/crate/engineering/electrical,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "dm" = (
 /obj/machinery/power/apc/auto_name/north,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "dT" = (
 /obj/item/spacepod_equipment/cargo/chair,
 /turf/open/floor/engine,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "dY" = (
 /turf/closed/indestructible/riveted,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "ed" = (
 /obj/machinery/power/apc/auto_name/east,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "el" = (
 /obj/machinery/gateway/away,
-/turf/open/floor/plating/asteroid/whitesands/dried,
-/area/space)
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
+"ep" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bottles/sandblast,
+/obj/item/card/id/away/ws_exped/spaceport_tcomms,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/mining_facility)
 "ez" = (
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "eE" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "ff" = (
 /turf/open/floor/wood,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "fn" = (
 /turf/open/floor/plasteel/grimy,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "gb" = (
 /turf/closed/wall,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "gn" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/security)
 "hf" = (
 /obj/machinery/light/dim,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "hl" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"hW" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/spaceport/departures)
 "iz" = (
 /obj/machinery/computer/telecomms/monitor,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "iA" = (
 /obj/item/stack/sheet/mineral/plasma/twenty,
 /obj/structure/table,
@@ -132,7 +156,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "iJ" = (
 /obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -142,10 +166,15 @@
 /obj/item/gun/ballistic/rifle/boltaction/polymer,
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/whitesands/surface/outdoors)
+"iT" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ballistic/rifle/boltaction/polymer,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "iV" = (
 /obj/mecha/working/ripley/mining,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "iW" = (
 /obj/structure/mineral_door/sandstone,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -153,7 +182,7 @@
 "jk" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "jx" = (
 /turf/closed/wall/mineral/sandstone,
 /area/whitesands/surface/outdoors)
@@ -161,25 +190,30 @@
 /obj/item/storage/belt/utility/full,
 /obj/item/radio,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "jV" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plating/asteroid/whitesands,
 /area/whitesands/surface/outdoors)
+"jZ" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/item/stack/cable_coil/cut/random,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
 "kd" = (
 /obj/structure/rack,
 /obj/item/storage/box/ingredients/italian,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "kf" = (
 /obj/machinery/telecomms/hub,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "kl" = (
 /obj/effect/gibspawner/xeno/bodypartless,
 /mob/living/simple_animal/hostile/alien/sentinel,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "km" = (
 /obj/structure/table,
 /obj/item/ammo_box/aac_300blk_stripper,
@@ -189,56 +223,60 @@
 "kq" = (
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "kt" = (
 /obj/item/stack/sheet/mineral/gold/five,
 /obj/structure/table,
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/whitesands/surface/outdoors)
+"kX" = (
+/obj/item/stack/cable_coil/cut/random,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/security)
 "ll" = (
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "lJ" = (
 /mob/living/simple_animal/hostile/whitesands/survivor,
 /turf/open/floor/wood,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "lL" = (
 /obj/machinery/door/airlock/mining,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "lN" = (
 /obj/machinery/light/dim{
 	dir = 1
 	},
 /obj/effect/mob_spawn/human/whitesands/survivor/tribesman,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "md" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/bottles/sandblast,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "mh" = (
 /mob/living/simple_animal/hostile/whitesands/ranged/hunter{
 	faction = list("ws_mining_base")
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "mE" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "mJ" = (
 /obj/machinery/door/airlock/security/glass,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/security)
 "mO" = (
 /obj/structure/closet/crate/engineering,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "mP" = (
 /obj/structure/bed/roller{
 	color = "#4B5320"
@@ -249,50 +287,61 @@
 /obj/effect/turf_decal/weather,
 /obj/effect/turf_decal/weather,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "ni" = (
 /obj/effect/spawner/lootdrop/crate_spawner,
 /turf/open/floor/engine,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"nq" = (
+/obj/item/stack/cable_coil/cut/random,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/spaceport/departures)
+"ny" = (
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "nB" = (
 /obj/spacepod/prebuilt,
 /turf/open/floor/engine,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "nT" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
 	},
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
+"nW" = (
+/obj/item/stack/cable_coil/cut/random,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
 "nY" = (
 /obj/machinery/power/apc/auto_name/north,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "og" = (
 /obj/structure/chair/plastic,
 /turf/open/floor/wood,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "oo" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/spawner/west,
 /obj/item/paper_bin/carbon,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "or" = (
 /obj/machinery/modular_computer/console{
 	dir = 1
 	},
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "oG" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin/carbon,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "pg" = (
 /obj/machinery/door/airlock/command/glass,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "pp" = (
 /obj/structure/table,
 /obj/item/ammo_box/c45,
@@ -303,26 +352,39 @@
 /obj/effect/turf_decal/weather,
 /obj/effect/turf_decal/weather,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "pJ" = (
 /obj/structure/chair/comfy{
 	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
+"pM" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/security)
 "pR" = (
 /obj/effect/turf_decal/box/corners,
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "pW" = (
 /obj/item/stack/cable_coil/cut/random,
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "qp" = (
 /obj/structure/rack,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"qE" = (
+/turf/open/floor/plasteel/airless/white,
+/area/awaymission/whitesands/spaceport/security)
+"qT" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
 "re" = (
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/whitesands/surface/outdoors)
@@ -331,100 +393,122 @@
 	panel_open = 1
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "rx" = (
 /obj/effect/mob_spawn/human/whitesands/survivor/leader,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "rG" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "rW" = (
 /obj/machinery/door/airlock,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
+"ss" = (
+/mob/living/simple_animal/hostile/alien/sentinel,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
 "sG" = (
 /obj/effect/gibspawner/robot,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "sN" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "tf" = (
 /obj/machinery/ore_silo,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "tg" = (
 /obj/machinery/conveyor/auto{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "tj" = (
 /obj/machinery/conveyor/auto,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"tm" = (
+/turf/open/floor/plasteel/dark,
+/area/awaymission/whitesands/spaceport/engineering)
 "tt" = (
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "tw" = (
 /obj/machinery/telecomms/message_server,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
+"tI" = (
+/turf/open/floor/plating,
+/area/awaymission/whitesands/spaceport/security)
 "tO" = (
 /obj/machinery/light/broken{
 	dir = 8
 	},
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
+"tU" = (
+/mob/living/simple_animal/hostile/alien/drone,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
+"tX" = (
+/turf/closed/wall,
+/area/awaymission/whitesands/gateway)
 "tZ" = (
 /obj/item/stack/cable_coil/cut/random,
 /obj/effect/gibspawner/xeno/bodypartless,
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "ub" = (
 /obj/structure/rack,
 /obj/item/storage/box/firecrackers,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "uh" = (
 /obj/effect/gibspawner/xeno/bodypartless,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "uk" = (
-/turf/open/floor/plating/asteroid/whitesands/dried,
-/area/space)
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "uq" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "ut" = (
 /obj/item/stack/cable_coil/random,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "ux" = (
 /obj/effect/gibspawner/generic/animal,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "uz" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/utility/full,
 /obj/item/radio,
 /obj/item/storage/firstaid/ancient,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "uN" = (
 /obj/effect/mob_spawn/human/whitesands/survivor/tribesman,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "va" = (
 /obj/structure/chair/plastic{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/whitesands/surface/outdoors)
+"vi" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/spaceport/security)
 "vz" = (
 /obj/effect/spawner/lootdrop/whitesands/survivor,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -435,39 +519,47 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "vG" = (
 /obj/machinery/suit_storage_unit/engine,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
+"vV" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "wx" = (
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "wK" = (
 /obj/machinery/computer/telecomms/server,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "wN" = (
 /obj/machinery/mineral/ore_redemption,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "xb" = (
 /obj/machinery/door/airlock/command/glass,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "xx" = (
 /mob/living/simple_animal/hostile/whitesands/ranged/hunter,
 /turf/open/floor/plating/asteroid/whitesands,
 /area/whitesands/surface/outdoors)
+"xy" = (
+/obj/item/storage/toolbox/emergency/old,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "xB" = (
 /obj/item/stack/rods,
 /obj/item/stack/rods,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "xC" = (
 /obj/machinery/light/dim,
 /turf/open/floor/wood,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "xH" = (
 /obj/structure/falsewall/sandstone,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -476,12 +568,12 @@
 /obj/machinery/door/airlock/engineering/glass/critical,
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "yw" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance/four,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "yI" = (
 /obj/machinery/conveyor/auto{
 	dir = 4
@@ -490,58 +582,59 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "yL" = (
 /obj/machinery/conveyor/auto,
 /obj/machinery/sheetifier,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "yQ" = (
 /obj/machinery/conveyor/auto{
 	dir = 8
 	},
 /obj/machinery/light/dim,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"zv" = (
+/turf/closed/mineral/random/whitesands,
+/area/awaymission/whitesands/gateway)
 "zC" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/automatic/pistol/m1911,
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/whitesands/surface/outdoors)
+"zM" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "zQ" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
-"Aq" = (
-/mob/living/simple_animal/hostile/whitesands/survivor{
-	faction = list("ws_mining_base")
-	},
-/turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/spaceport/engineering)
 "As" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "AJ" = (
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "Bi" = (
 /obj/item/stack/cable_coil/cut/random,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "Bu" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "BQ" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "BY" = (
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "Cf" = (
 /mob/living/simple_animal/hostile/whitesands/ranged/gunslinger,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -554,23 +647,30 @@
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/whitesands/survivor,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Dl" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/wood,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "DG" = (
 /obj/effect/spawner/lootdrop/crate_spawner,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"DQ" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/spaceport/security)
 "DS" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
+"Ea" = (
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
 "Ef" = (
 /obj/structure/closet/crate/engineering/electrical,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Ex" = (
 /obj/item/stack/sheet/mineral/uranium/five,
 /obj/structure/table,
@@ -579,10 +679,10 @@
 "Ez" = (
 /obj/effect/gibspawner/xeno/bodypartless,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "EA" = (
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "ED" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/sarsaparilla,
@@ -591,15 +691,15 @@
 "EE" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "EG" = (
 /obj/item/storage/bottles/sandblast,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "EI" = (
 /obj/item/spacepod_equipment/weaponry/plasma_cutter,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Ff" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -607,10 +707,13 @@
 "Fj" = (
 /turf/open/floor/plating/asteroid/whitesands,
 /area/whitesands/surface/outdoors)
+"FG" = (
+/turf/open/floor/plating,
+/area/awaymission/whitesands/spaceport/departures)
 "FK" = (
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "FS" = (
 /obj/item/stack/sheet/mineral/titanium/fifty,
 /obj/structure/table,
@@ -619,15 +722,24 @@
 "Gj" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "GC" = (
 /obj/structure/bookcase/manuals/engineering,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "GD" = (
 /obj/effect/turf_decal/weather,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
+"GH" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
+"GK" = (
+/turf/open/floor/plating,
+/area/awaymission/whitesands/spaceport/engineering)
 "GM" = (
 /obj/structure/closet/crate/grave,
 /turf/open/floor/plating/asteroid/whitesands,
@@ -642,15 +754,22 @@
 "GW" = (
 /obj/item/stack/rods,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "Ho" = (
 /obj/machinery/recycler/deathtrap,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Hz" = (
 /obj/item/spacepod_equipment/weaponry/basic_pod_ka,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"HJ" = (
+/turf/closed/wall/r_wall,
+/area/awaymission/whitesands/spaceport/lobby)
+"HN" = (
+/mob/living/simple_animal/hostile/alien/drone,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/security)
 "HW" = (
 /obj/machinery/mineral/equipment_vendor,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -658,22 +777,25 @@
 "HZ" = (
 /obj/structure/chair/office,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "Ik" = (
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "II" = (
 /obj/machinery/door/airlock/external/glass,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "IS" = (
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
+"Jo" = (
+/turf/closed/wall/r_wall,
+/area/awaymission/whitesands/spaceport/departures)
 "Jq" = (
 /turf/open/floor/engine,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Jv" = (
 /obj/item/reagent_containers/food/drinks/bottle/sarsaparilla,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -683,22 +805,22 @@
 	id = "warehouse_inner_door"
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "JT" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "JU" = (
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "Kb" = (
 /obj/structure/chair/comfy{
 	dir = 8
 	},
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plasteel/grimy,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "Kz" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -708,23 +830,23 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "KC" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "KH" = (
 /obj/machinery/door/airlock/mining/glass,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Lo" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plasteel/grimy,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "Lz" = (
 /obj/machinery/door/airlock/engineering,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "LC" = (
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/whitesands/surface/outdoors/unexplored)
@@ -733,13 +855,13 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "MK" = (
 /obj/machinery/light/dim{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "MM" = (
 /obj/machinery/button{
 	id = "warehouse_inner_door";
@@ -747,48 +869,68 @@
 	pixel_y = -24
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "MU" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "Nm" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
+"No" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "Nr" = (
 /obj/item/spacepod_equipment/lock,
 /turf/open/floor/engine,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Nt" = (
 /obj/machinery/door/airlock/engineering/glass/critical,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
+"Nz" = (
+/obj/effect/decal/cleanable/ash/large,
+/obj/machinery/power/apc/away{
+	pixel_x = -24
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable{
+	d2 = 2
+	},
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "NF" = (
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "NM" = (
 /obj/item/stack/sheet/metal/five,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
+"NY" = (
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/security)
 "NZ" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Oa" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "OH" = (
 /obj/structure/rack,
 /obj/item/storage/box/minertracker,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "OP" = (
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "Pg" = (
 /turf/closed/mineral/random/whitesands,
 /area/whitesands/surface/outdoors/unexplored)
@@ -796,77 +938,91 @@
 /obj/structure/rack,
 /obj/item/pizzabox,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "PF" = (
 /obj/machinery/conveyor/auto{
 	dir = 5;
 	verted = -1
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"PI" = (
+/obj/machinery/modular_computer/console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/security)
 "PK" = (
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "PX" = (
 /turf/closed/mineral/random/whitesands,
 /area/whitesands/surface/outdoors)
 "PY" = (
 /obj/structure/ore_box,
 /turf/open/floor/engine,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "QO" = (
 /obj/effect/turf_decal/weather,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "QT" = (
 /obj/machinery/light/broken{
 	dir = 8
 	},
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "QW" = (
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
 /obj/machinery/sheetifier,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Rf" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/whitesands/survivor/gunslinger,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "RN" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/security)
 "Sv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
+"SR" = (
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
 "SU" = (
 /obj/structure/table/reinforced,
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "To" = (
 /mob/living/simple_animal/hostile/whitesands/ranged/gunslinger{
 	faction = list("ws_mining_base")
 	},
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "TD" = (
 /obj/item/spacepod_equipment/cargo/large/ore,
 /turf/open/floor/engine,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"Ua" = (
+/obj/structure/chair/office,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/security)
 "Ud" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "Un" = (
 /mob/living/simple_animal/hostile/whitesands/survivor,
 /turf/open/floor/plating/asteroid/whitesands/dried,
@@ -874,7 +1030,7 @@
 "Uu" = (
 /obj/structure/table/wood,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "UJ" = (
 /mob/living/simple_animal/hostile/whitesands/ranged/gunslinger,
 /turf/open/floor/plating/asteroid/whitesands,
@@ -882,7 +1038,7 @@
 "UL" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
 "UP" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/automatic/aks74u,
@@ -893,18 +1049,22 @@
 "UY" = (
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plasteel/airless,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "VF" = (
 /obj/structure/frame/computer{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/lobby)
+"VG" = (
+/obj/item/gps,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "VU" = (
 /obj/structure/rack,
 /obj/item/storage/box/medipens,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "VW" = (
 /obj/machinery/door/airlock/vault{
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
@@ -912,12 +1072,12 @@
 	req_access_txt = "205"
 	},
 /turf/open/floor/plasteel/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/telecomms)
 "Wh" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/armory_contraband,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Wn" = (
 /turf/closed/mineral/random/whitesands,
 /area/whitesands/surface/outdoors/unexplored/danger)
@@ -928,34 +1088,48 @@
 "Xm" = (
 /obj/structure/chair/wood,
 /turf/open/floor/wood,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
+"XB" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/awaymission/whitesands/gateway)
 "XF" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 1
 	},
 /turf/open/floor/engine/air,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
+"XS" = (
+/turf/closed/wall/r_wall,
+/area/awaymission/whitesands/spaceport/telecomms)
+"Yc" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plasteel/airless/dark,
+/area/awaymission/whitesands/spaceport/departures)
 "Yr" = (
 /mob/living/simple_animal/hostile/alien/queen/large,
 /obj/item/stack/sheet/metal/five,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "YN" = (
 /obj/machinery/light/broken,
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
+"YO" = (
+/turf/open/floor/plating/asteroid/whitesands/dried,
+/area/whitesands/surface/outdoors/explored)
 "Zj" = (
 /turf/open/floor/plasteel/airless/dark,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "Zs" = (
 /obj/structure/rack,
 /obj/item/storage/box/gum/bubblegum,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 "Zt" = (
 /obj/item/stack/rods,
 /turf/open/floor/plasteel/airless/white,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/departures)
 "ZM" = (
 /mob/living/simple_animal/hostile/whitesands/ranged/hunter{
 	faction = list("ws_mining_base")
@@ -964,12 +1138,12 @@
 /area/whitesands/surface/outdoors)
 "ZO" = (
 /turf/closed/wall/r_wall,
-/area/whitesands/colony)
+/area/awaymission/whitesands/spaceport/engineering)
 "ZX" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance/six,
 /turf/open/floor/plating,
-/area/whitesands/colony/production)
+/area/awaymission/whitesands/mining_facility)
 
 (1,1,1) = {"
 Pg
@@ -9770,15 +9944,15 @@ Pg
 Pg
 Pg
 Pg
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
+XS
+XS
+XS
+XS
+XS
+XS
+XS
+XS
+XS
 Pg
 Pg
 Pg
@@ -10013,12 +10187,12 @@ re
 re
 re
 ZO
-BY
-BY
-BY
-BY
-BY
-BY
+GK
+GK
+GK
+GK
+GK
+GK
 ZO
 re
 re
@@ -10026,8 +10200,8 @@ Pg
 Pg
 Pg
 Pg
-ZO
-ZO
+XS
+XS
 AJ
 AJ
 AJ
@@ -10035,8 +10209,8 @@ AJ
 AJ
 AJ
 AJ
-ZO
-ZO
+XS
+XS
 Pg
 Pg
 Pg
@@ -10270,12 +10444,12 @@ re
 ZO
 ZO
 ZO
-BY
+GK
 rv
 rv
 rv
 rv
-BY
+GK
 ZO
 ZO
 ZO
@@ -10283,7 +10457,7 @@ re
 Pg
 Pg
 Pg
-ZO
+XS
 AJ
 AJ
 dY
@@ -10293,7 +10467,7 @@ dY
 dY
 AJ
 AJ
-ZO
+XS
 Pg
 Pg
 Pg
@@ -10525,22 +10699,22 @@ re
 re
 re
 ZO
-BY
-BY
+GK
+GK
 JU
-BY
+GK
 ut
-BY
-BY
+GK
+GK
 DS
-BY
-BY
+GK
+GK
 ZO
 re
 re
 Pg
 Pg
-ZO
+XS
 AJ
 eE
 dY
@@ -10550,7 +10724,7 @@ tw
 dY
 eE
 AJ
-ZO
+XS
 Pg
 Pg
 Pg
@@ -10782,22 +10956,22 @@ re
 re
 re
 ZO
-BY
-BY
-BY
-BY
-BY
+GK
+GK
+GK
+GK
+GK
 ut
-BY
-BY
-BY
-BY
+GK
+GK
+GK
+GK
 ZO
 re
 re
 re
 Pg
-ZO
+XS
 AJ
 eE
 dY
@@ -10807,7 +10981,7 @@ Gj
 dY
 eE
 AJ
-ZO
+XS
 Pg
 Pg
 Pg
@@ -11039,22 +11213,22 @@ re
 re
 re
 ZO
-BY
-BY
-BY
+GK
+GK
+GK
 rv
 rv
 rv
 rv
-BY
-BY
-BY
+GK
+GK
+GK
 ZO
 re
 re
 re
 re
-ZO
+XS
 AJ
 eE
 dY
@@ -11064,7 +11238,7 @@ tw
 dY
 eE
 AJ
-ZO
+XS
 Pg
 Pg
 Pg
@@ -11298,12 +11472,12 @@ re
 ZO
 ZO
 ZO
-BY
-BY
+GK
+GK
 JU
-BY
+GK
 JU
-BY
+GK
 ZO
 ZO
 ZO
@@ -11311,7 +11485,7 @@ re
 re
 re
 re
-ZO
+XS
 AJ
 AJ
 dY
@@ -11321,7 +11495,7 @@ dY
 dY
 AJ
 AJ
-ZO
+XS
 Pg
 Pg
 Pg
@@ -11556,11 +11730,11 @@ re
 re
 ZO
 nY
-BY
-BY
+GK
+GK
 mE
-BY
-BY
+GK
+GK
 ZO
 re
 re
@@ -11568,8 +11742,8 @@ re
 re
 re
 re
-ZO
-ZO
+XS
+XS
 AJ
 AJ
 ed
@@ -11577,8 +11751,8 @@ AJ
 AJ
 AJ
 AJ
-ZO
-ZO
+XS
+XS
 Pg
 Pg
 Pg
@@ -11814,7 +11988,7 @@ re
 ZO
 ZO
 ZO
-BY
+GK
 JU
 ZO
 ZO
@@ -11826,15 +12000,15 @@ re
 re
 re
 re
-ZO
-ZO
-ZO
-ZO
+XS
+XS
+XS
+XS
 OP
-ZO
-ZO
-ZO
-ZO
+XS
+XS
+XS
+XS
 Pg
 Pg
 Pg
@@ -12071,7 +12245,7 @@ re
 re
 re
 ZO
-BY
+GK
 ut
 ZO
 re
@@ -12328,7 +12502,7 @@ re
 re
 re
 ZO
-BY
+GK
 JU
 ZO
 re
@@ -12344,7 +12518,7 @@ re
 re
 re
 ZO
-AJ
+tm
 ZO
 re
 Pg
@@ -12585,7 +12759,7 @@ re
 re
 re
 ZO
-BY
+GK
 DS
 ZO
 re
@@ -12601,7 +12775,7 @@ re
 re
 re
 ZO
-AJ
+tm
 ZO
 re
 re
@@ -12842,20 +13016,20 @@ re
 re
 re
 ZO
-BY
-BY
+GK
+GK
 ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
+Jo
+Jo
+Jo
+Jo
+Jo
+Jo
+Jo
+Jo
+Jo
+Jo
+Jo
 ZO
 ZO
 Nt
@@ -13095,24 +13269,24 @@ wx
 Sv
 wx
 bd
-ZO
-ZO
-ZO
-ZO
-Zj
-Zj
-Zj
-Zj
-Zj
-tO
-Zj
-Zj
-Zj
-tO
-NF
-Zj
-BY
-tO
+Jo
+Jo
+Jo
+Jo
+Ea
+Ea
+Ea
+Ea
+Ea
+qT
+Ea
+Ea
+Ea
+qT
+Yc
+Ea
+FG
+qT
 ZO
 cY
 Ik
@@ -13359,9 +13533,9 @@ tt
 tt
 tZ
 IS
-BY
+FG
 tt
-BY
+FG
 tt
 MU
 tt
@@ -13369,7 +13543,7 @@ tt
 IS
 tt
 tt
-Zj
+Ea
 ZO
 cY
 Zj
@@ -13614,25 +13788,25 @@ tt
 tt
 tt
 tt
-BY
+FG
 tt
 IS
 Zt
 IS
 tt
-BY
+FG
 tZ
 tt
 tt
-BY
+FG
 IS
-GW
+SR
 ZO
 pW
 Zj
 NM
 Nm
-BY
+GK
 mE
 bX
 Ik
@@ -13866,24 +14040,24 @@ wx
 Sv
 wx
 bd
-ZO
-ZO
-ZO
-ZO
-Zj
-BY
-Zj
-EE
-Zj
-Zj
-Zj
-Zj
-Zj
-BY
-Zj
+Jo
+Jo
+Jo
+Jo
+Ea
+FG
+Ea
+tU
+Ea
+Ea
+Ea
+Ea
+Ea
+FG
+Ea
 tt
 tt
-Zj
+Ea
 ZO
 zQ
 Zj
@@ -14126,28 +14300,28 @@ bd
 re
 re
 re
-ZO
-Zj
-BY
-ZO
+Jo
+Ea
+FG
+Jo
 jk
 jk
 jk
 jk
-UL
+hW
 jk
-ZO
+Jo
 YN
 tt
 tt
-Zj
+Ea
 ZO
 GC
 Zj
-BY
+GK
 JT
-BY
-BY
+GK
+GK
 uq
 Zj
 Zj
@@ -14383,21 +14557,21 @@ bd
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-Zj
-Zj
-Zj
+Jo
+Ea
+Ea
+Jo
+Ea
+Ea
+Ea
 Ez
-Zj
-Zj
+Ea
+Ea
 jk
-NF
+Yc
 tt
 aw
-Zj
+Ea
 Lz
 Zj
 Zj
@@ -14640,21 +14814,21 @@ bd
 re
 re
 re
-ZO
-Zj
-Ik
-ZO
-Zj
+Jo
+Ea
+nW
+Jo
+Ea
 aV
 PK
 PK
 Bi
-Zj
+Ea
 jk
-Zj
+Ea
 tt
 tt
-Zj
+Ea
 Lz
 Zj
 Zj
@@ -14897,31 +15071,31 @@ re
 re
 re
 re
-ZO
-GW
-Zj
+Jo
+SR
+Ea
 xb
-Zj
+Ea
 HZ
-Zj
+Ea
 HZ
 Uu
-Zj
+Ea
 jk
-Zj
+Ea
 tt
 tt
-Zj
+Ea
 ZO
 GC
 Zj
 Zj
 xB
-BY
+GK
 NM
 uq
-BY
-BY
+GK
+GK
 Zj
 ZO
 re
@@ -15154,21 +15328,21 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-Zj
-Zj
+Jo
+Ea
+Ea
+Jo
+Ea
+Ea
 kl
-Zj
+Ea
 cO
-BY
+FG
 jk
-Zj
+Ea
 av
 tt
-NF
+Yc
 ZO
 As
 bX
@@ -15177,8 +15351,8 @@ JT
 JT
 uq
 uq
-BY
-BY
+GK
+GK
 Zj
 ZO
 re
@@ -15411,27 +15585,27 @@ re
 re
 re
 re
-ZO
-Ik
-Zj
+Jo
+nW
+Ea
 pg
-Zj
-Zj
-BY
-Ik
+Ea
+Ea
+FG
+nW
 PK
-Zj
+Ea
 jk
-Zj
+Ea
 aw
 tt
-bX
+ss
 ZO
 As
 Zj
-BY
-BY
-BY
+GK
+GK
+GK
 Zj
 Zj
 EE
@@ -15668,21 +15842,21 @@ re
 re
 re
 re
-ZO
-Zj
-BY
-ZO
-gn
-Zj
-Zj
+Jo
+Ea
+FG
+Jo
+jZ
+Ea
+Ea
 HZ
 or
-Zj
+Ea
 jk
-GW
+SR
 tt
 tt
-Zj
+Ea
 ZO
 Zj
 Zj
@@ -15925,21 +16099,21 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-Zj
-Zj
-Zj
-Zj
-Zj
-Zj
+Jo
+Ea
+Ea
+Jo
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
 jk
-Zj
+Ea
 tt
 tt
-Zj
+Ea
 ZO
 ZO
 ZO
@@ -16182,23 +16356,23 @@ re
 re
 re
 re
-ZO
+Jo
 Ez
-Zj
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
+Ea
+bG
+bG
+bG
+bG
+bG
+bG
+bG
+bG
+bG
 mJ
 mJ
-ZO
-ZO
-ZO
+bG
+bG
+bG
 sN
 sN
 sN
@@ -16439,23 +16613,23 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-ZO
+Jo
+Ea
+Ea
+bG
+bG
 gn
-Zj
-BY
-JT
-UL
-Zj
-BY
-tt
-tt
-Zj
-BY
-ZO
+NY
+tI
+pM
+DQ
+NY
+tI
+qE
+qE
+NY
+tI
+bG
 dm
 ez
 ez
@@ -16696,23 +16870,23 @@ re
 re
 re
 re
-ZO
-Zj
-BY
-ZO
-JT
-Zj
-Zj
-HZ
-or
-UL
-Zj
-Zj
-tt
-tt
-BY
-Zj
-ZO
+Jo
+Ea
+FG
+bG
+pM
+NY
+NY
+Ua
+PI
+DQ
+NY
+NY
+qE
+qE
+tI
+NY
+bG
 ez
 ez
 KC
@@ -16953,23 +17127,23 @@ re
 re
 re
 re
-ZO
-Zj
-Ik
-ZO
-JT
-Zj
-BY
-Zj
-JT
-UL
-Zj
-BY
-tt
-tt
-Zj
-Zj
-ZO
+Jo
+Ea
+nW
+bG
+pM
+NY
+tI
+NY
+pM
+DQ
+NY
+tI
+qE
+qE
+NY
+NY
+bG
 rW
 rW
 oo
@@ -17210,23 +17384,23 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-JT
-Zj
-Zj
+Jo
+Ea
+Ea
+bG
+pM
+NY
+NY
 aj
-ZO
-ZO
-ZO
-ZO
+bG
+bG
+bG
+bG
 mJ
 mJ
-ZO
-ZO
-ZO
+bG
+bG
+bG
 ez
 ez
 ez
@@ -17467,15 +17641,15 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-BY
-uq
-EE
-Zj
+Jo
+Ea
+Ea
+tI
+vi
+HN
+NY
 aj
-ZO
+bG
 ez
 ez
 ez
@@ -17724,15 +17898,15 @@ re
 re
 re
 re
-ZO
-Zj
-EE
-ZO
-JT
-Zj
-Zj
+Jo
+Ea
+tU
+bG
+pM
+NY
+NY
 RN
-ZO
+bG
 ez
 fn
 fn
@@ -17981,15 +18155,15 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-JT
-Zj
-Ik
+Jo
+Ea
+Ea
+bG
+pM
+NY
+kX
 RN
-ZO
+bG
 ez
 fn
 fn
@@ -18238,15 +18412,15 @@ re
 re
 re
 re
-ZO
-BY
-Ik
-ZO
-JT
-Zj
-Zj
+Jo
+FG
+nW
+bG
+pM
+NY
+NY
 RN
-ZO
+bG
 ez
 Oa
 MG
@@ -18495,15 +18669,15 @@ re
 re
 re
 re
-ZO
-Zj
+Jo
+Ea
 Ez
-ZO
-JT
-Zj
-bX
+bG
+pM
+NY
+aq
 RN
-ZO
+bG
 ez
 Oa
 pJ
@@ -18752,15 +18926,15 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-JT
-Ik
-Zj
+Jo
+Ea
+Ea
+bG
+pM
+kX
+NY
 RN
-ZO
+bG
 ez
 fn
 fn
@@ -18775,10 +18949,10 @@ fn
 ez
 GD
 GD
-ZO
+HJ
 II
 II
-ZO
+HJ
 re
 re
 re
@@ -19009,15 +19183,15 @@ re
 re
 re
 re
-ZO
-JU
-BY
+Jo
+nq
+FG
 aP
-Zj
-Zj
-Zj
+NY
+NY
+NY
 RN
-ZO
+bG
 ez
 Oa
 MG
@@ -19032,7 +19206,7 @@ Oa
 GD
 GD
 GD
-ZO
+HJ
 QO
 QO
 UL
@@ -19266,15 +19440,15 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
+Jo
+Ea
+Ea
 aP
-Zj
-Zj
-Zj
+NY
+NY
+NY
 RN
-ZO
+bG
 ez
 Oa
 pJ
@@ -19287,12 +19461,12 @@ pJ
 pJ
 Oa
 GD
-ZO
-ZO
-ZO
+HJ
+HJ
+HJ
 QO
 QO
-ZO
+HJ
 re
 re
 re
@@ -19523,15 +19697,15 @@ re
 re
 re
 re
-ZO
-Zj
-BY
-ZO
-JT
-Zj
-Zj
+Jo
+Ea
+FG
+bG
+pM
+NY
+NY
 RN
-ZO
+bG
 ez
 fn
 fn
@@ -19780,15 +19954,15 @@ re
 re
 re
 re
-ZO
-Zj
-Zj
-ZO
-JT
-Zj
-Zj
+Jo
+Ea
+Ea
+bG
+pM
+NY
+NY
 RN
-ZO
+bG
 ez
 ez
 ez
@@ -20037,15 +20211,15 @@ re
 re
 re
 re
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
+Jo
+Jo
+Jo
+bG
+bG
+bG
+bG
+bG
+bG
 UL
 UL
 UL
@@ -20058,12 +20232,12 @@ UL
 UL
 UL
 UL
-ZO
+HJ
 UL
-ZO
+HJ
 II
 II
-ZO
+HJ
 Fj
 Fj
 Fj
@@ -46864,7 +47038,7 @@ Hz
 EA
 EA
 EA
-Aq
+EA
 DG
 EA
 gb
@@ -47286,8 +47460,8 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
+YO
+YO
 re
 re
 re
@@ -47542,12 +47716,12 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-re
+YO
+YO
+YO
+YO
+YO
+YO
 re
 re
 re
@@ -47799,12 +47973,12 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
 re
 re
 re
@@ -48053,16 +48227,16 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 re
 Pg
 Pg
@@ -48310,17 +48484,17 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -48567,17 +48741,17 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -48821,20 +48995,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -49078,19 +49252,19 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -49334,20 +49508,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -49591,20 +49765,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -49848,20 +50022,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -50103,21 +50277,21 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -50220,7 +50394,7 @@ tg
 gb
 ll
 EA
-To
+EA
 EA
 EA
 EA
@@ -50360,20 +50534,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -50617,20 +50791,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -50873,21 +51047,21 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -51130,20 +51304,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -51386,21 +51560,21 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -51643,21 +51817,21 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -51765,7 +51939,7 @@ EA
 uz
 tf
 tf
-md
+ep
 EA
 gb
 Fj
@@ -51900,22 +52074,22 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -52156,23 +52330,23 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -52414,22 +52588,22 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -52671,23 +52845,23 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -52929,22 +53103,22 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -53186,23 +53360,23 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -53444,22 +53618,22 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -53702,21 +53876,21 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
 Pg
 Pg
 Pg
@@ -53960,25 +54134,25 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-Pg
-Pg
-Pg
-Pg
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+ny
+ny
+ny
+tX
+tX
+tX
+tX
+tX
+tX
+tX
+tX
 Pg
 Pg
 Pg
@@ -54218,24 +54392,24 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-Pg
-Pg
-Pg
-Pg
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+ny
+ny
+ny
+ny
+Nz
+cQ
+xy
+zv
+zv
+zv
+tX
 Pg
 Pg
 Pg
@@ -54476,23 +54650,23 @@ Pg
 Pg
 Pg
 Pg
+YO
+YO
+YO
+YO
+YO
+YO
+tX
 uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-Pg
-Pg
-Pg
+XB
+ny
+ny
+ny
+ny
+ny
+zv
+zv
+tX
 Pg
 Pg
 Pg
@@ -54734,22 +54908,22 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-Pg
-Pg
-Pg
+YO
+YO
+YO
+YO
+YO
+tX
+iT
+No
+No
+No
+ny
+ny
+VG
+zv
+zv
+tX
 Pg
 Pg
 Pg
@@ -54993,20 +55167,20 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-Pg
-Pg
-Pg
+YO
+YO
+YO
+tX
+GH
+ny
+ny
+ny
+ny
+ny
+ny
+zv
+zv
+zv
 Pg
 Pg
 Pg
@@ -55252,18 +55426,18 @@ Pg
 Pg
 Pg
 Pg
-uk
-uk
-uk
-uk
-uk
-uk
+YO
+tX
+vV
+ny
+ny
+ny
 el
+ny
+ny
 uk
-uk
-uk
-Pg
-Pg
+zv
+zv
 Pg
 Pg
 Pg
@@ -55510,17 +55684,17 @@ Pg
 Pg
 Pg
 Pg
-Pg
-Pg
-uk
-uk
-uk
-uk
-uk
-uk
-uk
-Pg
-Pg
+tX
+zv
+ny
+zM
+ny
+ny
+ny
+ny
+ny
+zv
+zv
 Pg
 Pg
 Pg
@@ -55767,17 +55941,17 @@ Pg
 Pg
 Pg
 Pg
-Pg
-Pg
-Pg
-Pg
-uk
-uk
-uk
-uk
-Pg
-Pg
-Pg
+tX
+zv
+zv
+zv
+ny
+ny
+ny
+ny
+zv
+zv
+zv
 Pg
 Pg
 Pg
@@ -56024,17 +56198,17 @@ Pg
 Pg
 Pg
 Pg
-Pg
-Pg
-Pg
-Pg
-Pg
+tX
+zv
+zv
+zv
+zv
+ny
 uk
-uk
-Pg
-Pg
-Pg
-Pg
+zv
+zv
+zv
+zv
 Pg
 Pg
 Pg
@@ -56281,17 +56455,17 @@ Pg
 Pg
 Pg
 Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
+tX
+zv
+zv
+zv
+zv
+zv
+zv
+zv
+zv
+zv
+tX
 Pg
 Pg
 Pg
@@ -56538,17 +56712,17 @@ Pg
 Pg
 Pg
 Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
+tX
+zv
+zv
+zv
+zv
+zv
+zv
+zv
+zv
+zv
+tX
 Pg
 Pg
 Pg
@@ -56795,17 +56969,17 @@ Pg
 Pg
 Pg
 Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
+tX
+tX
+tX
+tX
+tX
+tX
+tX
+tX
+tX
+tX
+tX
 Pg
 Pg
 Pg

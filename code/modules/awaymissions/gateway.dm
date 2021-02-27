@@ -258,12 +258,23 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	if(!target)
 		if(!GLOB.the_gateway)
 			to_chat(user,"<span class='warning'>Home gateway is not responding!</span>")
-		if(GLOB.the_gateway.target)
-			to_chat(user,"<span class='warning'>Home gateway already in use!</span>")
+		if(GLOB.the_gateway.target && target != destination)
+			to_chat(user,"<span class='warning'>Home gateway is connected somewhere else!</span>")
 			return
 		activate(GLOB.the_gateway.destination)
 	else
 		deactivate()
+
+/obj/machinery/gateway/away/activate(datum/gateway_destination/D)
+	if(!powered() || target)
+		return
+	target = D
+	target.activate(destination)
+	generate_bumper()
+	update_icon()
+
+/obj/machinery/gateway/away/process()
+	return // Doesn't use power, therefore doesn't need to process.
 
 /* Gateway control computer */
 /obj/machinery/computer/gateway_control

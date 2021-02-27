@@ -3256,6 +3256,7 @@
 #include "whitesands\code\game\machinery\shuttle\shuttle_engine.dm"
 #include "whitesands\code\game\machinery\shuttle\shuttle_engine_types.dm"
 #include "whitesands\code\game\machinery\shuttle\shuttle_heater.dm"
+#include "whitesands\code\game\machinery\telecomms\long_range_relay.dm"
 #include "whitesands\code\game\objects\effects\countdown.dm"
 #include "whitesands\code\game\objects\effects\landmarks.dm"
 #include "whitesands\code\game\objects\effects\spiderperson_web.dm"
