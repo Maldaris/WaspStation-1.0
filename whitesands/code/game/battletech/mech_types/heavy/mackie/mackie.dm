@@ -5,5 +5,3 @@
 		the Mackie was the first weapons system developed into what would become
 		the pinnacle of armed robotic vehicles, the <b>Battlemech</b>.
 	"}
-	mecha_class = BT_MECH_HEAVY
-	max_tonnage = 100
